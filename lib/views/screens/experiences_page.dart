@@ -57,117 +57,94 @@ class ExperiencesPage extends StatelessWidget {
           ),
           const SizedBox(height: 24),
 
-          // Timeline Row
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Left timeline
-              Container(
-                width: 20,
-                child: Column(
+          Column(
+            children: workExperience.map((exp) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 2,
-                      height: double.infinity,
-                      color: Colors.greenAccent.withOpacity(0.5),
+                    // Timeline indicator
+                    Column(
+                      children: [
+                        Container(
+                          width: 12,
+                          height: 12,
+                          decoration: BoxDecoration(
+                            color: Colors.greenAccent,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        Container(
+                          width: 2,
+                          height: 120,
+                          color: Colors.greenAccent.withOpacity(0.5),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 20),
+
+                    // Content
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.05),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.greenAccent.withOpacity(0.3)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.greenAccent.withOpacity(0.1),
+                              blurRadius: 8,
+                              offset: const Offset(0, 4),
+                            )
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GlitchText(
+                              text: "${exp['role']!}",
+                              textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                              randomLetterSwitch: true,
+                            ),
+                            const SizedBox(height: 4),
+                            GlitchText(
+                              text: "${exp['company']!}",
+                              textStyle: const TextStyle(fontSize: 16, color: Colors.white70),
+                              randomLetterSwitch: true,
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              "${exp['duration']!}",
+                              style: const TextStyle(fontSize: 14, color: Colors.white54),
+                            ),
+                            const SizedBox(height: 8),
+                            ...List<Widget>.from((exp['tasks'] as List<String>).map(
+                                  (task) => Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 2.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text("• ", style: TextStyle(color: Colors.greenAccent, fontSize: 14)),
+                                    Expanded(
+                                      child: Text(
+                                        task,
+                                        style: const TextStyle(color: Colors.white70, fontSize: 14),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ),
-
-              const SizedBox(width: 20),
-
-              // Experiences content
-              Expanded(
-                child: Column(
-                  children: workExperience.asMap().entries.map((entry) {
-                    final index = entry.key;
-                    final exp = entry.value;
-
-                    return Padding(
-                      padding: EdgeInsets.only(bottom: index == workExperience.length - 1 ? 0 : 40),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Circle indicator
-                          Column(
-                            children: [
-                              Container(
-                                width: 12,
-                                height: 12,
-                                decoration: BoxDecoration(
-                                  color: Colors.greenAccent,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(width: 16),
-
-                          // Card
-                          Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.all(16),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.05),
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(color: Colors.greenAccent.withOpacity(0.3)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.greenAccent.withOpacity(0.1),
-                                    blurRadius: 8,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  GlitchText(
-                                    text: "${exp['role']!}",
-                                    textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                                    randomLetterSwitch: true,
-                                  ),
-                                  const SizedBox(height: 4),
-                                  GlitchText(
-                                    text: "${exp['company']!}",
-                                    textStyle: const TextStyle(fontSize: 16, color: Colors.white70),
-                                    randomLetterSwitch: true,
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    "${exp['duration']!}",
-                                    style: const TextStyle(fontSize: 14, color: Colors.white54),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  ...List<Widget>.from((exp['tasks'] as List<String>).map(
-                                        (task) => Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 2.0),
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          const Text("• ", style: TextStyle(color: Colors.greenAccent, fontSize: 14)),
-                                          Expanded(
-                                            child: Text(
-                                              task,
-                                              style: const TextStyle(color: Colors.white70, fontSize: 14),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  )),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ),
-            ],
+              );
+            }).toList(),
           ),
         ],
       ),
