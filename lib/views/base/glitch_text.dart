@@ -100,7 +100,7 @@ class _GlitchTextState extends State<GlitchText>
 
   @override
   Widget build(BuildContext context) {
-    final baseStyle = widget.textStyle?.copyWith(color: Colors.green.withValues(alpha: .95)) ??
+    final baseStyle = widget.textStyle?.copyWith(color: Colors.green.withOpacity(0.95)) ??
         const TextStyle(fontSize: 36, color: Colors.white);
 
     return AnimatedBuilder(

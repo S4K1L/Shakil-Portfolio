@@ -82,10 +82,9 @@ class HireMePage extends StatelessWidget {
               _contactButton(
                 icon: Icons.email_outlined,
                 label: "Email Me",
-                onTap:
-                    () => _launchUrl(
-                      "mailto:69shakilmahmud@gmail.com?subject=Hiring Opportunity&body=Hi Shakil, I’d like to discuss a project with you.",
-                    ),
+                onTap: () => _launchUrl(
+                  "mailto:69shakilmahmud@gmail.com?subject=Hiring Opportunity&body=Hi Shakil, I’d like to discuss a project with you.",
+                ),
               ),
               _contactButton(
                 icon: Icons.linked_camera_outlined,
@@ -102,20 +101,17 @@ class HireMePage extends StatelessWidget {
                 label: "GitHub",
                 onTap: () => _launchUrl("https://github.com/S4K1L"),
               ),
-
               _contactButton(
                 icon: Icons.call_outlined,
                 label: "Contact",
                 onTap: () => _launchUrl("tel:+8801941271076"),
               ),
-
               _contactButton(
                 icon: Icons.picture_as_pdf_outlined,
                 label: "View My CV",
-                onTap:
-                    () => _launchUrl(
-                      "https://drive.google.com/file/d/12JfSwcRJy2pQj8re7SjkQqUft7i4eUB4/view?usp=sharing",
-                    ),
+                onTap: () => _launchUrl(
+                  "https://drive.google.com/file/d/12JfSwcRJy2pQj8re7SjkQqUft7i4eUB4/view?usp=sharing",
+                ),
               ),
             ],
           ),
@@ -134,120 +130,119 @@ class HireMePage extends StatelessWidget {
 
           // Experience Timeline
           Column(
-            children:
-                workExperience.map((Map<String, dynamic> exp) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+            children: workExperience.map((Map<String, dynamic> exp) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Timeline indicator
+                    Column(
                       children: [
-                        // Timeline indicator
-                        Column(
-                          children: [
-                            Container(
-                              width: 12,
-                              height: 12,
-                              decoration: const BoxDecoration(
-                                color: Colors.green,
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            Container(
-                              width: 2,
-                              height: 120,
-                              color: Colors.green.withOpacity(0.5),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(width: 20),
-
-                        // Content
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.05),
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: Colors.green.withOpacity(0.3),
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.green.withOpacity(0.1),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 4),
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  exp['role']!,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  exp['company']!,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white70,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  exp['duration']!,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.white54,
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                ...List<Widget>.from(
-                                  (exp['tasks'] as List<String>).map(
-                                    (task) => Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 2,
-                                      ),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "• ",
-                                            style: TextStyle(
-                                              color: Colors.green.withValues(
-                                                alpha: .95,
-                                              ),
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              task,
-                                              style: const TextStyle(
-                                                color: Colors.white70,
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                        Container(
+                          width: 12,
+                          height: 12,
+                          decoration: const BoxDecoration(
+                            color: Colors.green,
+                            shape: BoxShape.circle,
                           ),
+                        ),
+                        Container(
+                          width: 2,
+                          height: 120,
+                          color: Colors.green.withOpacity(0.5),
                         ),
                       ],
                     ),
-                  );
-                }).toList(),
+                    const SizedBox(width: 20),
+
+                    // Content
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.05),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Colors.green.withOpacity(0.3),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.green.withOpacity(0.1),
+                              blurRadius: 8,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              exp['role']!,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              exp['company']!,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.white70,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              exp['duration']!,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.white54,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            ...List<Widget>.from(
+                              (exp['tasks'] as List<String>).map(
+                                (task) => Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 2,
+                                  ),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "• ",
+                                        style: TextStyle(
+                                          color: Colors.green.withValues(
+                                            alpha: .95,
+                                          ),
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          task,
+                                          style: const TextStyle(
+                                            color: Colors.white70,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
           ),
           const SizedBox(height: 60),
 
@@ -256,7 +251,7 @@ class HireMePage extends StatelessWidget {
             child: Text(
               "Let’s build something amazing together 💻🚀",
               style: TextStyle(
-                color: Colors.green.withValues(alpha: .95),
+                color: Colors.green.withOpacity(.95),
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),
@@ -287,12 +282,12 @@ class HireMePage extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.05),
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.green.withValues(alpha: .95)),
+          border: Border.all(color: Colors.green.withOpacity(.95)),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: Colors.green.withValues(alpha: .95), size: 20),
+            Icon(icon, color: Colors.green.withOpacity(.95), size: 20),
             const SizedBox(width: 8),
             Text(
               label,
