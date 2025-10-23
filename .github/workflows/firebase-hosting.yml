@@ -3,7 +3,7 @@ name: Deploy Flutter Web to Firebase Hosting
 on:
   push:
     branches:
-      - main  # or 'master' if that’s your main branch
+      - master  # or 'master' if that’s your main branch
 
 jobs:
   build_and_deploy:
