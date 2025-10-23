@@ -41,7 +41,7 @@ class _BackgroundVideoState extends State<BackgroundVideo> {
           children: [
             VideoPlayer(_controller),
             Container(
-              color: Colors.black.withOpacity(0.40), // 🔹 black opacity
+              color: Colors.black.withOpacity(0.20), // 🔹 black opacity
             ),
           ],
         ),

@@ -15,9 +15,9 @@ class PortfolioApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shakil Mahmud | Portfolio',
-      theme: Themes.lightTheme, // custom theme in utils/theme/themes.dart
-      darkTheme: Themes.darkTheme, // dark mode
-      themeMode: ThemeMode.dark, // default mode
+      theme: Themes.lightTheme,
+      darkTheme: Themes.darkTheme,
+      themeMode: ThemeMode.dark,
       initialRoute: '/',
       getPages: [
         GetPage(name: '/', page: () => const LandingPage()),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'glitch_text.dart';
 
 class TopBar extends StatelessWidget {
   const TopBar({super.key});
@@ -26,7 +25,7 @@ class TopBar extends StatelessWidget {
           Row(
             children: List.generate(
               3,
-                  (i) => Container(
+              (i) => Container(
                 margin: const EdgeInsets.symmetric(horizontal: 3),
                 width: 10,
                 height: 10,
@@ -40,12 +39,12 @@ class TopBar extends StatelessWidget {
           const SizedBox(width: 20),
 
           // Glitch rotating words
-          const GlitchText(
-            text: "SHAKIL MAHMUD",
-            textStyle: TextStyle(
+          const Text(
+            "SHAKIL MAHMUD",
+            style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: Colors.white,
+              color: Colors.green,
             ),
           ),
           const Spacer(),

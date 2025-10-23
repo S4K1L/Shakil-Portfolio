@@ -13,6 +13,9 @@ dependencies:
   cupertino_icons: ^1.0.8
   get:
   video_player: ^2.9.1
+  animate_do: ^4.2.0
+  flutter_glass_morphism: ^1.0.2
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:

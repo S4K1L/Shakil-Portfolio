@@ -4,9 +4,13 @@ import 'glitch_text.dart';
 class BottomNav extends StatelessWidget {
   final int activeIndex;
   final Function(int) onItemTap;
-  const BottomNav({super.key, required this.activeIndex, required this.onItemTap});
+  const BottomNav({
+    super.key,
+    required this.activeIndex,
+    required this.onItemTap,
+  });
 
-  final items = const ["Home", "Experiences", "Projects", "About Me"];
+  final items = const ["Home", "Projects", "About Me", "Hire Me"];
 
   @override
   Widget build(BuildContext context) {
