@@ -161,15 +161,14 @@ class HireMePage extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.05),
+                          color: Colors.black.withOpacity(0.5),
+                          border:
+                              Border.all(color: Colors.greenAccent, width: 1),
                           borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.green.withOpacity(0.3),
-                          ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.green.withOpacity(0.1),
-                              blurRadius: 8,
+                              color: Colors.greenAccent.withOpacity(0.2),
+                              blurRadius: 12,
                               offset: const Offset(0, 4),
                             ),
                           ],
@@ -179,11 +178,10 @@ class HireMePage extends StatelessWidget {
                           children: [
                             Text(
                               exp['role']!,
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.green.withOpacity(0.95)),
                             ),
                             const SizedBox(height: 4),
                             Text(

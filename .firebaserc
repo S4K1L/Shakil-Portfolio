@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "portfolio-9f3e9"
-  }
+    "default": "s4k1l-portfolio"
+  },
+  "targets": {},
+  "etags": {}
 }
