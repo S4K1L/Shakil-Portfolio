@@ -215,8 +215,8 @@ class HireMePage extends StatelessWidget {
                                       Text(
                                         "• ",
                                         style: TextStyle(
-                                          color: Colors.green.withValues(
-                                            alpha: .95,
+                                          color: Colors.green.withOpacity(
+                                            .95,
                                           ),
                                           fontSize: 14,
                                         ),
