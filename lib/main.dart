@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:s4k1l/utils/theme/theme.dart';
@@ -15,16 +16,20 @@ class PortfolioApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shakil Mahmud | Portfolio',
+      scrollBehavior: const MaterialScrollBehavior().copyWith(dragDevices: {
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.touch,
+        PointerDeviceKind.stylus,
+        PointerDeviceKind.invertedStylus,
+        PointerDeviceKind.trackpad,
+        PointerDeviceKind.unknown,
+      }),
       theme: Themes.lightTheme,
       darkTheme: Themes.darkTheme,
       themeMode: ThemeMode.dark,
       initialRoute: '/',
       getPages: [
         GetPage(name: '/', page: () => const LandingPage()),
-        // You can later add:
-        // GetPage(name: '/experience', page: () => const ExperiencePage()),
-        // GetPage(name: '/projects', page: () => const ProjectsPage()),
-        // GetPage(name: '/about', page: () => const AboutPage()),
       ],
     );
   }

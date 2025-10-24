@@ -16,6 +16,8 @@ dependencies:
   animate_do: ^4.2.0
   flutter_glass_morphism: ^1.0.2
   url_launcher:
+  firebase_analytics: ^11.3.4
+  lottie:
 
 dev_dependencies:
   flutter_test:
