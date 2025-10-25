@@ -18,17 +18,145 @@ class LandingPage extends StatefulWidget {
   State<LandingPage> createState() => _LandingPageState();
 }
 
-class _LandingPageState extends State<LandingPage> {
+class _LandingPageState extends State<LandingPage>
+    with SingleTickerProviderStateMixin {
   final PageController _pageController = PageController();
   int currentIndex = 0;
 
   final pages = [const ProjectsPage(), const AboutMePage(), const HireMePage()];
+
+  final List<Map<String, String>> bugAnimations = [
+    {'name': 'Robot', 'asset': 'assets/images/robot.json'},
+    {'name': 'Parrot', 'asset': 'assets/images/parrot.json'},
+    {'name': 'Cartoon', 'asset': 'assets/images/cartoon.json'},
+    {'name': 'Snake', 'asset': 'assets/images/snake.json'},
+    {'name': 'Man', 'asset': 'assets/images/man.json'},
+    {'name': 'Dog', 'asset': 'assets/images/dog.json'},
+  ];
+
+  String currentBugAsset = 'assets/images/robot.json';
 
   double mouseX = 0;
   double mouseY = 0;
 
   bool get isMouseConnected =>
       RendererBinding.instance.mouseTracker.mouseIsConnected;
+
+  OverlayEntry? _overlayEntry;
+  late AnimationController _animController;
+  late Animation<double> _fadeAnim;
+  late Animation<Offset> _slideAnim;
+
+  @override
+  void initState() {
+    super.initState();
+    _animController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 250),
+    );
+    _fadeAnim = CurvedAnimation(parent: _animController, curve: Curves.easeIn);
+    _slideAnim = Tween<Offset>(
+      begin: const Offset(0, -0.1),
+      end: const Offset(0, 0),
+    ).animate(CurvedAnimation(parent: _animController, curve: Curves.easeOut));
+  }
+
+  void _toggleAnimationList(BuildContext context) {
+    if (_overlayEntry != null) {
+      _closeOverlay();
+      return;
+    }
+
+    final overlay = Overlay.of(context);
+    final renderBox = context.findRenderObject() as RenderBox;
+    final offset = renderBox.localToGlobal(Offset.zero);
+
+    _overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        top: offset.dy + 45, // a little below the top bar
+        right: 20,
+        child: Material(
+          color: Colors.transparent,
+          child: SlideTransition(
+            position: _slideAnim,
+            child: FadeTransition(
+              opacity: _fadeAnim,
+              child: Container(
+                width: 200,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.85),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: Colors.greenAccent.withOpacity(0.3),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.4),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: bugAnimations.length,
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  itemBuilder: (context, index) {
+                    final anim = bugAnimations[index];
+                    final isSelected = currentBugAsset == anim['asset'];
+                    return InkWell(
+                      onTap: () {
+                        setState(() => currentBugAsset = anim['asset']!);
+                        _closeOverlay();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 14, vertical: 10),
+                        child: Row(
+                          children: [
+                            Icon(
+                              isSelected
+                                  ? Icons.check_circle
+                                  : Icons.bug_report_outlined,
+                              color: isSelected
+                                  ? Colors.greenAccent
+                                  : Colors.white70,
+                              size: 18,
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              anim['name']!,
+                              style: TextStyle(
+                                color: isSelected
+                                    ? Colors.greenAccent
+                                    : Colors.white70,
+                                fontWeight: isSelected
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    overlay.insert(_overlayEntry!);
+    _animController.forward();
+  }
+
+  void _closeOverlay() async {
+    await _animController.reverse();
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
 
   void onNavTap(int index) {
     setState(() => currentIndex = index);
@@ -37,6 +165,12 @@ class _LandingPageState extends State<LandingPage> {
       duration: const Duration(milliseconds: 600),
       curve: Curves.easeInOut,
     );
+  }
+
+  @override
+  void dispose() {
+    _animController.dispose();
+    super.dispose();
   }
 
   @override
@@ -59,19 +193,19 @@ class _LandingPageState extends State<LandingPage> {
               child: Container(color: Colors.black.withOpacity(0.55)),
             ),
 
-            // ------------------- BUG -------------------
+            // 🐞 Animated bug
             BugFollowAnimation(
-              size: MediaQuery.of(context).size,
+              size: size,
               mouseX: mouseX,
               mouseY: mouseY,
               isMouseConnected: isMouseConnected,
-              lottieAsset: 'assets/images/robot.json',
+              lottieAsset: currentBugAsset,
             ),
-            // -------------------------------------------
 
             Column(
               children: [
-                const TopBar(),
+                // Pass dropdown trigger
+                TopBar(onIconTap: () => _toggleAnimationList(context)),
                 Expanded(
                   child: PageView(
                     controller: _pageController,

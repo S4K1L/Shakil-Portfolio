@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TopBar extends StatelessWidget {
-  const TopBar({super.key});
+  final VoidCallback? onIconTap;
+  const TopBar({super.key, this.onIconTap});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,6 @@ class TopBar extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // iOS style traffic-light dots
           Row(
             children: List.generate(
               3,
@@ -37,8 +37,6 @@ class TopBar extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 20),
-
-          // Glitch rotating words
           const Text(
             "SHAKIL MAHMUD",
             style: TextStyle(
@@ -49,8 +47,14 @@ class TopBar extends StatelessWidget {
           ),
           const Spacer(),
 
-          // Right-side icon
-          const Icon(Icons.highlight_remove, color: Colors.green),
+          // 🪄 Tap this to open animation selector
+          GestureDetector(
+            onTap: onIconTap,
+            child: const Icon(
+              Icons.animation,
+              color: Colors.greenAccent,
+            ),
+          ),
         ],
       ),
     );
