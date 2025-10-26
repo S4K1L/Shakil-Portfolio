@@ -101,7 +101,7 @@ class HireMePage extends StatelessWidget {
                 icon: Icons.picture_as_pdf_outlined,
                 label: "View My CV",
                 onTap: () => _launchUrl(
-                  "https://drive.google.com/file/d/12JfSwcRJy2pQj8re7SjkQqUft7i4eUB4/view?usp=sharing",
+                  "https://drive.google.com/file/d/1-NjeL20TYeViROxPFXh0GT-HBnFGH18k/view?usp=sharing",
                 ),
               ),
             ],
