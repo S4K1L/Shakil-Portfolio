@@ -39,9 +39,9 @@ class _GlitchImageState extends State<GlitchImage>
   }
 
   Offset _randOffset(double range) => Offset(
-    (_r.nextDouble() - 0.5) * range,
-    (_r.nextDouble() - 0.5) * range,
-  );
+        (_r.nextDouble() - 0.5) * range,
+        (_r.nextDouble() - 0.5) * range,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +69,26 @@ class _GlitchImageState extends State<GlitchImage>
                     offset: offsetRed,
                     child: ColorFiltered(
                       colorFilter: const ColorFilter.matrix([
-                        1, 0, 0, 0, 0,
-                        0, 0, 0, 0, 0,
-                        0, 0, 0, 0, 0,
-                        0, 0, 0, 1, 0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
                       ]),
                       child: Image(
                         image: widget.imageProvider,
@@ -88,10 +104,26 @@ class _GlitchImageState extends State<GlitchImage>
                     offset: offsetGreen,
                     child: ColorFiltered(
                       colorFilter: const ColorFilter.matrix([
-                        0, 0, 0, 0, 0,
-                        0, 1, 0, 0, 0,
-                        0, 0, 0, 0, 0,
-                        0, 0, 0, 1, 0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
                       ]),
                       child: Image(
                         image: widget.imageProvider,
@@ -113,21 +145,21 @@ class _GlitchImageState extends State<GlitchImage>
                   ),
 
                   // Horizontal flicker slice
-                  Positioned(
-                    top: height * 0.2 + (6 * phase),
-                    left: 0,
-                    right: 0,
-                    height: max(4.0, 6.0 * phase.abs()),
-                    child: BackdropFilter(
-                      filter: ui.ImageFilter.blur(
-                        sigmaX: 1.5 * phase.abs(),
-                        sigmaY: 1.2 * phase.abs(),
-                      ),
-                      child: Container(
-                        color: Colors.white.withOpacity(0.02 * phase.abs()),
-                      ),
-                    ),
-                  ),
+                  // Positioned(
+                  //   top: height * 0.2 + (6 * phase),
+                  //   left: 0,
+                  //   right: 0,
+                  //   height: max(4.0, 6.0 * phase.abs()),
+                  //   child: BackdropFilter(
+                  //     filter: ui.ImageFilter.blur(
+                  //       sigmaX: 1.5 * phase.abs(),
+                  //       sigmaY: 1.2 * phase.abs(),
+                  //     ),
+                  //     child: Container(
+                  //       color: Colors.white.withOpacity(0.02 * phase.abs()),
+                  //     ),
+                  //   ),
+                  // ),
 
                   // Border and glow
                   Container(

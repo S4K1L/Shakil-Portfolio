@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:s4k1l/views/base/experience_section.dart';
+import 'package:s4k1l/views/base/glitch_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HireMePage extends StatelessWidget {
@@ -56,28 +58,17 @@ class HireMePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Title
-          Text(
-            "Hire Me!",
-            style: TextStyle(
-              fontSize: isMobile ? 32 : 48,
-              fontWeight: FontWeight.bold,
-              color: Colors.green,
-              letterSpacing: 1.5,
-            ),
+          GlitchText(
+            text: "Hire Me!",
+            textStyle: TextStyle(
+                fontSize: isMobile ? 32 : 48, fontWeight: FontWeight.bold),
+            randomLetterSwitch: true,
           ),
           const SizedBox(height: 16),
-
-          // // About Section
-          // Text(
-          //   "👋 Hi, I’m Shakil Mahmud — a passionate Flutter Developer with experience in building high-quality, scalable mobile applications using Flutter, Firebase, and REST APIs. I focus on clean architecture, smooth UI/UX, and performance optimization. If you’re looking for someone who can bring your app ideas to life — let’s connect!",
-          //   style: const TextStyle(fontSize: 16, color: Colors.white70, height: 1.5),
-          // ),
-          // const SizedBox(height: 32),
-
           // Contact Buttons
           Wrap(
-            spacing: 12,
-            runSpacing: 12,
+            spacing: 8,
+            runSpacing: 8,
             children: [
               _contactButton(
                 icon: Icons.email_outlined,
@@ -92,14 +83,14 @@ class HireMePage extends StatelessWidget {
                 onTap: () => _launchUrl("https://www.linkedin.com/in/s4k1l/"),
               ),
               _contactButton(
-                icon: Icons.facebook_outlined,
-                label: "Facebook",
-                onTap: () => _launchUrl("https://www.facebook.com/s4k1ll"),
-              ),
-              _contactButton(
                 icon: Icons.picture_as_pdf_outlined,
                 label: "GitHub",
                 onTap: () => _launchUrl("https://github.com/S4K1L"),
+              ),
+              _contactButton(
+                icon: Icons.facebook_outlined,
+                label: "Facebook",
+                onTap: () => _launchUrl("https://www.facebook.com/s4k1ll"),
               ),
               _contactButton(
                 icon: Icons.call_outlined,
@@ -118,129 +109,17 @@ class HireMePage extends StatelessWidget {
           const SizedBox(height: 40),
 
           // Work Experience
-          Text(
-            "Work Experience",
-            style: TextStyle(
-              fontSize: isMobile ? 24 : 32,
-              fontWeight: FontWeight.bold,
-              color: Colors.green,
-            ),
+          GlitchText(
+            text: "Work Experience",
+            textStyle: TextStyle(
+                fontSize: isMobile ? 24 : 32, fontWeight: FontWeight.bold),
+            randomLetterSwitch: true,
           ),
           const SizedBox(height: 16),
 
           // Experience Timeline
-          Column(
-            children: workExperience.map((Map<String, dynamic> exp) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Timeline indicator
-                    Column(
-                      children: [
-                        Container(
-                          width: 12,
-                          height: 12,
-                          decoration: const BoxDecoration(
-                            color: Colors.green,
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                        Container(
-                          width: 2,
-                          height: 120,
-                          color: Colors.green.withOpacity(0.5),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(width: 20),
-
-                    // Content
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.5),
-                          border:
-                              Border.all(color: Colors.greenAccent, width: 1),
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.greenAccent.withOpacity(0.2),
-                              blurRadius: 12,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              exp['role']!,
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.green.withOpacity(0.95)),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              exp['company']!,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                color: Colors.white70,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              exp['duration']!,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.white54,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            ...List<Widget>.from(
-                              (exp['tasks'] as List<String>).map(
-                                (task) => Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 2,
-                                  ),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "• ",
-                                        style: TextStyle(
-                                          color: Colors.green.withOpacity(
-                                            .95,
-                                          ),
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          task,
-                                          style: const TextStyle(
-                                            color: Colors.white70,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }).toList(),
+          WorkExperienceSection(
+            workExperience: workExperience,
           ),
           const SizedBox(height: 60),
 
@@ -276,7 +155,7 @@ class HireMePage extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(8),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.05),
           borderRadius: BorderRadius.circular(8),

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:s4k1l/views/base/achievement_widgets.dart';
+import 'package:s4k1l/views/base/education_widgets.dart';
+import 'package:s4k1l/views/base/experience_section.dart';
+import 'package:s4k1l/views/base/skill_widgets.dart';
 import '../base/glitch_text.dart';
 
 class AboutMePage extends StatelessWidget {
@@ -21,6 +25,14 @@ class AboutMePage extends StatelessWidget {
     "GetX State Management",
     "Firebase",
     "Supabase",
+  ];
+
+  final education = const [
+    {
+      "degree": "BSc in CSE",
+      "institute": "Shanto-Mariam University of Creative Technology",
+      "grad": "Expected Graduation: Nov 2026",
+    },
   ];
 
   final workExperience = const [
@@ -55,14 +67,6 @@ class AboutMePage extends StatelessWidget {
         "Projects: Expense Tracker, Mental Health Care Bot (GPT4o), Ecommerce App.",
         "GetX state management & secure authentication integration.",
       ],
-    },
-  ];
-
-  final education = const [
-    {
-      "degree": "BSc in CSE",
-      "institute": "Shanto-Mariam University of Creative Technology",
-      "grad": "Expected Graduation: Nov 2026",
     },
   ];
 
@@ -102,211 +106,47 @@ class AboutMePage extends StatelessWidget {
           GlitchText(
             text:
                 "Hi, I'm Shakil Mahmud, a Flutter developer with a proven track record in building high-performance mobile applications, including task management, eCommerce solutions. Proficient in REST API integration and state management using GetX, with a strong commitment to delivering efficient, scalable, and user-friendly applications.",
-            textStyle: TextStyle(
+            textStyle: const TextStyle(
               fontSize: 16,
               color: Colors.white70,
               height: 1.5,
             ),
-            randomLetterSwitch: true,
+            randomLetterSwitch: false,
           ),
           const SizedBox(height: 30),
-
-          // Skills
+          // Achievements
           GlitchText(
-            text: "Skills",
-            textStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            text: "Achievements",
+            textStyle:
+                const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             randomLetterSwitch: true,
           ),
           const SizedBox(height: 12),
-          Wrap(
-            spacing: 16,
-            runSpacing: 12,
-            children:
-                skills
-                    .map(
-                      (skill) => Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 6,
-                          horizontal: 12,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.greenAccent.withOpacity(0.1),
-                          border: Border.all(
-                            color: Colors.greenAccent,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.greenAccent.withOpacity(0.3),
-                              blurRadius: 8,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: Text(
-                          skill,
-                          style: const TextStyle(color: Colors.white70),
-                        ),
-                      ),
-                    )
-                    .toList(),
+          AchievementsSection(achievements: achievements),
+          const SizedBox(height: 30),
+
+           // Education
+          GlitchText(
+            text: "Education",
+            textStyle:
+                TextStyle(fontSize: isMobile ? 24 : 32, fontWeight: FontWeight.bold),
+            randomLetterSwitch: true,
           ),
+          const SizedBox(height: 12),
+          EducationSection(education: education),
           const SizedBox(height: 30),
 
           // Work Experience
           GlitchText(
             text: "Work Experience",
-            textStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            textStyle: TextStyle(
+              fontSize: isMobile ? 24 : 32,
+              fontWeight: FontWeight.bold,
+            ),
             randomLetterSwitch: true,
           ),
-          const SizedBox(height: 12),
-          Column(
-            children:
-                workExperience.map((work) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.5),
-                        border: Border.all(color: Colors.greenAccent, width: 1),
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.greenAccent.withOpacity(0.2),
-                            blurRadius: 12,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GlitchText(
-                            text: "${work['role']} @ ${work['company']}",
-                            textStyle: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            randomLetterSwitch: true,
-                            glitchUpDown: true,
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            "${work['duration']}",
-                            style: const TextStyle(color: Colors.white70),
-                          ),
-                          const SizedBox(height: 8),
-                          ...List<Widget>.from(
-                            (work['tasks'] as List<String>).map(
-                              (task) => Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "• ",
-                                    style: TextStyle(color: Colors.greenAccent),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      task,
-                                      style: const TextStyle(
-                                        color: Colors.white70,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                }).toList(),
-          ),
-          const SizedBox(height: 30),
-
-          // Education
-          GlitchText(
-            text: "Education",
-            textStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            randomLetterSwitch: true,
-          ),
-          const SizedBox(height: 12),
-          Column(
-            children:
-                education
-                    .map(
-                      (edu) => Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(12),
-                        margin: const EdgeInsets.only(bottom: 12),
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.5),
-                          border: Border.all(
-                            color: Colors.greenAccent,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            GlitchText(
-                              text: edu['degree']!,
-                              textStyle: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              randomLetterSwitch: true,
-                            ),
-                            Text(
-                              edu['institute']!,
-                              style: const TextStyle(color: Colors.white70),
-                            ),
-                            Text(
-                              edu['grad']!,
-                              style: const TextStyle(color: Colors.white70),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                    .toList(),
-          ),
-          const SizedBox(height: 30),
-
-          // Achievements
-          GlitchText(
-            text: "Achievements",
-            textStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            randomLetterSwitch: true,
-          ),
-          const SizedBox(height: 12),
-          Column(
-            children:
-                achievements
-                    .map(
-                      (ach) => Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "• ",
-                            style: TextStyle(color: Colors.greenAccent),
-                          ),
-                          Expanded(
-                            child: Text(
-                              ach,
-                              style: const TextStyle(color: Colors.white70),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                    .toList(),
-          ),
+          const SizedBox(height: 16),
+          WorkExperienceSection(workExperience: workExperience),
           const SizedBox(height: 30),
         ],
       ),

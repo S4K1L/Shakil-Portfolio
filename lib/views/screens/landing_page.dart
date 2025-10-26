@@ -4,7 +4,6 @@ import 'package:flutter/rendering.dart';
 import 'package:s4k1l/views/base/bug_flying_animation.dart';
 import 'package:s4k1l/views/screens/about_me_page.dart';
 import 'package:s4k1l/views/screens/projects_page.dart';
-import '../base/background.dart';
 import '../base/glitch_image.dart';
 import '../base/top_bar.dart';
 import '../base/bottom_nav.dart';
@@ -28,9 +27,7 @@ class _LandingPageState extends State<LandingPage>
   final List<Map<String, String>> bugAnimations = [
     {'name': 'Robot', 'asset': 'assets/images/robot.json'},
     {'name': 'Parrot', 'asset': 'assets/images/parrot.json'},
-    {'name': 'Cartoon', 'asset': 'assets/images/cartoon.json'},
     {'name': 'Snake', 'asset': 'assets/images/snake.json'},
-    {'name': 'Man', 'asset': 'assets/images/man.json'},
     {'name': 'Dog', 'asset': 'assets/images/dog.json'},
   ];
 
