@@ -99,7 +99,7 @@ class _AnimatedProjectCardState extends State<_AnimatedProjectCard>
               duration: const Duration(milliseconds: 400),
               child: Image.asset(
                 widget.image,
-                // fit: BoxFit.cover,
+                fit: BoxFit.cover,
                 width: double.infinity,
                 height: double.infinity,
                 colorBlendMode: BlendMode.darken,
