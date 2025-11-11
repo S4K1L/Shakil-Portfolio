@@ -22,7 +22,7 @@ class ProjectsGrid extends StatelessWidget {
           crossAxisCount: isMobile ? 1 : 3,
           crossAxisSpacing: 20,
           mainAxisSpacing: 20,
-          childAspectRatio: isMobile ? 1.1 : .9,
+          childAspectRatio: isMobile ? 1.1 : 1.4,
         ),
         itemBuilder: (context, index) {
           final proj = projects[index];
@@ -97,9 +97,9 @@ class _AnimatedProjectCardState extends State<_AnimatedProjectCard>
             AnimatedOpacity(
               opacity: _hover ? 0.99 : 0.25,
               duration: const Duration(milliseconds: 400),
-              child: Image.network(
+              child: Image.asset(
                 widget.image,
-                fit: BoxFit.cover,
+                // fit: BoxFit.cover,
                 width: double.infinity,
                 height: double.infinity,
                 colorBlendMode: BlendMode.darken,
@@ -108,7 +108,7 @@ class _AnimatedProjectCardState extends State<_AnimatedProjectCard>
 
             // Foreground content
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
