@@ -19,7 +19,7 @@ class ProjectsGrid extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         itemCount: projects.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: isMobile ? 1 : 3,
+          crossAxisCount: isMobile ? 1 : 4,
           crossAxisSpacing: 20,
           mainAxisSpacing: 20,
           childAspectRatio: isMobile ? 1.1 : 1.4,

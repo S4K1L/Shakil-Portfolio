@@ -93,8 +93,6 @@ class _ProjectsPageState extends State<ProjectsPage> {
 
   ];
 
-  bool _isPrecached = false;
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -105,7 +103,6 @@ class _ProjectsPageState extends State<ProjectsPage> {
     for (var project in projects) {
       await precacheImage(AssetImage(project['image']), context);
     }
-    setState(() => _isPrecached = true);
   }
 
   Future<void> _launchUrl(String url) async {
@@ -122,9 +119,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
 
     return Padding(
       padding: const EdgeInsets.all(24),
-      child: !_isPrecached
-          ? const Center(child: CircularProgressIndicator())
-          : Column(
+      child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GlitchText(
