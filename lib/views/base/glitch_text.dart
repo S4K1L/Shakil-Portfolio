@@ -105,7 +105,9 @@ class _GlitchTextState extends State<GlitchText>
               child: Text(
                 _currentText,
                 style: baseStyle,
+                textAlign: TextAlign.center,
               ),
+              
             ),
           ],
         );

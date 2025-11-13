@@ -11,87 +11,95 @@ class ProjectsPage extends StatefulWidget {
 }
 
 class _ProjectsPageState extends State<ProjectsPage> {
-  final List<Map<String, dynamic>> projects = const [
-    {
-      "name": "Chakra Quiz",
-      "desc":
-          "A calming and interactive Chakra Quiz Application built with Flutter for the frontend, powered by a Django REST API backend, and managed with GetX for smooth state handling.",
-      "image": "assets/projects/chakra.png",
-      "tech": [
-        "Flutter",
-        "Django REST Framework",
-        "GetX",
-        "SharedPreferences",
-        "Dart Language",
-        "Python Language",
-      ],
-      "github": "https://github.com/S4K1L/Kunchi-Hidup.git",
-    },
-    {
-      "name": "The Clue",
-      "desc":
-          "A modern Crypto Learning Application built with Flutter for a smooth cross-platform experience, powered by a Django REST API backend, and managed with GetX for state management and navigation.",
-      "image": "assets/projects/theClue.png",
-      "tech": [
-        "Flutter",
-        "Django REST Framework",
-        "GetX",
-        "SharedPreferences",
-        "Dart Language",
-        "Python Language",
-      ],
-      "github": "https://github.com/S4K1L/Crypto-Education.git",
-    },
-    {
-      "name": "App Rolling",
-      "desc":
-          "Modern animated Flutter car rental UI with RESTApi backend, sleek transitions, and real-time live location system.",
-      "image": "assets/projects/uber.png",
-      "tech": [
-        "Flutter",
-        "NodeJS REST Framework",
-        "GetX",
-        "SharedPreferences",
-        "Dart Language",
-        "JavaScript Language",
-      ],
-      "github": "https://github.com/S4K1L/Uber.git",
-    },
-    
-    {
-      "name": "Map'd",
-      "desc":
-          "Map'd is your ultimate travel companion — designed to make every journey smarter, smoother, and more social. Whether you're a solo explorer, an adventure seeker, or a casual traveler, Map'd helps you plan trips, find hidden gems, and connect with fellow wanderers around the world.",
-      "image": "assets/projects/mapd.png",
-      "tech": [
-        "Flutter",
-        "Django REST Framework",
-        "GetX",
-        "SharedPreferences",
-        "Dart Language",
-        "Python Language",
-      ],
-      "github": "https://github.com/S4K1L/Mapd.git",
-    },
-    
-    {
-      "name": "re:",
-      "desc":
-          "re: is a modern social media platform designed to connect, share, and engage in ways that matter. Whether you want to stay in touch with friends, discover new content, or express yourself creatively, Re makes your social experience seamless, personal, and fun.",
-      "image": "assets/projects/re.png",
-      "tech": [
-        "Flutter",
-        "Django REST Framework",
-        "GetX",
-        "SharedPreferences",
-        "Dart Language",
-        "Python Language",
-      ],
-      "github": "https://github.com/S4K1L/REE-Social-Media.git",
-    },
+final List<Map<String, dynamic>> projects = const [
+  {
+    "name": "Chakra Quiz",
+    "desc": "A calming chakra assessment app with interactive quizzes.",
+    "image": "assets/projects/chakra.png",
+    "tech": [
+      "Flutter",
+      "Django REST Framework",
+      "GetX",
+      "SharedPreferences",
+    ],
+    "features": [
+      "Interactive chakra quiz with scoring",
+      "Personalized results + tips",
+      "Local progress persistence",
+    ],
+    "github": "https://github.com/S4K1L/Kunchi-Hidup.git",
+  },
+  {
+    "name": "The Clue",
+    "desc": "A modern crypto learning app with bite-sized lessons.",
+    "image": "assets/projects/theClue.png",
+    "tech": [
+      "Flutter",
+      "Django REST Framework",
+      "GetX",
+      "SharedPreferences",
+    ],
+    "features": [
+      "Guided learning modules",
+      "Progress tracking & quizzes",
+      "Offline lesson caching",
+    ],
+    "github": "https://github.com/S4K1L/Crypto-Education.git",
+  },
+  {
+    "name": "App Rolling",
+    "desc": "A sleek car rental UI concept with live tracking.",
+    "image": "assets/projects/uber.png",
+    "tech": [
+      "Flutter",
+      "Node.js REST API",
+      "GetX",
+      "SharedPreferences",
+    ],
+    "features": [
+      "Real-time vehicle tracking",
+      "Animated booking flow",
+      "Booking history & receipts",
+    ],
+    "github": "https://github.com/S4K1L/Uber.git",
+  },
+  {
+    "name": "Map’d",
+    "desc": "A smart travel companion with AI route planning.",
+    "image": "assets/projects/mapd.png",
+    "tech": [
+      "Flutter",
+      "Django REST Framework",
+      "GetX",
+      "SharedPreferences",
+    ],
+    "features": [
+      "Offline maps & navigation",
+      "AI trip suggestions",
+      "Community chat & recommendations",
+    ],
+    "store": "https://play.google.com/store/apps/details?id=com.wanderlink.app",
+    "github": "https://github.com/S4K1L/Mapd.git",
+  },
+  {
+    "name": "re:",
+    "desc": "A next-gen social app for authentic sharing.",
+    "image": "assets/projects/re.png",
+    "tech": [
+      "Flutter",
+      "Django REST Framework",
+      "GetX",
+      "SharedPreferences",
+    ],
+    "features": [
+      "Real-time chatting",
+      "Smart video reaction shares",
+      "Auto delete of old media in 48 hours",
+    ],
+    "github": "https://github.com/S4K1L/REE-Social-Media.git",
+  },
+];
 
-
-  ];
 
   @override
   void didChangeDependencies() {
