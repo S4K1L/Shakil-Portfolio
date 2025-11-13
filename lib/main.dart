@@ -30,7 +30,7 @@ class PortfolioApp extends StatelessWidget {
       themeMode: ThemeMode.dark,
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => const PortfolioLandingPage()),
+        GetPage(name: '/', page: () => const LandingPage()),
       ],
     );
   }

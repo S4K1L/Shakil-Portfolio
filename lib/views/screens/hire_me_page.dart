@@ -69,7 +69,7 @@ class HireMePage extends StatelessWidget {
                 icon: Icons.bolt_rounded,
                 title: "Proven Expertise",
                 desc:
-                    "Over 1.7 years of professional experience in building modern Flutter apps that are fast, scalable, and elegant.",
+                    "Over 3 years of professional and personal experience in building modern Flutter apps that are fast, scalable, and elegant.",
                 accent: accent,
                 width: isMobile ? size.width : size.width * 0.28,
               ),

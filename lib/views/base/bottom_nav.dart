@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'glitch_text.dart';
 
 class BottomNav extends StatelessWidget {
   final int activeIndex;
   final Function(int) onItemTap;
+
   const BottomNav({
     super.key,
     required this.activeIndex,
@@ -15,7 +17,7 @@ class BottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
+      height: 90, // slightly taller to fit the Lottie
       decoration: BoxDecoration(
         color: Colors.black.withOpacity(0.7),
         border: Border(
@@ -32,6 +34,20 @@ class BottomNav extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // // ✅ Lottie animation only when active
+                // if (isActive)
+                //   SizedBox(
+                //     height: 30,
+                //     width: 30,
+                //     child: Lottie.asset(
+                //       lottiePath,
+                //       repeat: true,
+                //       animate: true,
+                //     ),
+                //   )
+                // else
+                //   const SizedBox(height: 30),
+
                 GlitchText(
                   text: items[index],
                   textStyle: TextStyle(
@@ -47,12 +63,12 @@ class BottomNav extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 1000),
                   height: 3,
                   width: isActive ? 30 : 0,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                      colors: [Colors.greenAccent, Colors.tealAccent],
+                      colors: [Colors.greenAccent, Colors.green],
                     ),
                     borderRadius: BorderRadius.circular(2),
                   ),

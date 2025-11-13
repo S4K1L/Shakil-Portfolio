@@ -48,12 +48,9 @@ class TopBar extends StatelessWidget {
           const Spacer(),
 
           // 🪄 Tap this to open animation selector
-          GestureDetector(
-            onTap: onIconTap,
-            child: Icon(
-              Icons.shield_moon_outlined,
-              color: Colors.green.withOpacity(0.95),
-            ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset("assets/images/bd.png"),
           ),
         ],
       ),

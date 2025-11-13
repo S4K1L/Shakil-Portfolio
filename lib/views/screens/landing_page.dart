@@ -32,6 +32,7 @@ class _LandingPageState extends State<LandingPage>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final isMobile = size.width < 700;
+    final isTablet = size.width >= 700 && size.width < 1100;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -44,7 +45,7 @@ class _LandingPageState extends State<LandingPage>
         },
         child: Stack(
           children: [
-            // 🌀 Animated Gradient Background
+            // 🌈 Background gradient reacts to mouse position
             AnimatedContainer(
               duration: const Duration(seconds: 4),
               decoration: BoxDecoration(
@@ -54,16 +55,16 @@ class _LandingPageState extends State<LandingPage>
                     (mouseY / size.height) * 2 - 1,
                   ),
                   radius: 1.2,
-                  colors: [
-                    const Color(0xFF001F1F),
-                    const Color(0xFF010B13),
+                  colors: const [
+                    Color(0xFF001F1F),
+                    Color(0xFF010B13),
                     Colors.black,
                   ],
                 ),
               ),
             ),
 
-            // 🪩 Floating animated bug
+            // 🐞 Floating robot animation
             BugFollowAnimation(
               size: size,
               mouseX: mouseX,
@@ -72,6 +73,7 @@ class _LandingPageState extends State<LandingPage>
               lottieAsset: 'assets/images/robot.json',
             ),
 
+            // 🌍 Main content
             Column(
               children: [
                 TopBar(onIconTap: () {}),
@@ -82,8 +84,8 @@ class _LandingPageState extends State<LandingPage>
                     onPageChanged: (index) =>
                         setState(() => currentIndex = index),
                     children: [
-                      _buildHeroSection(isMobile),
-                      ...pages.map((page) => page),
+                      _buildHeroSection(isMobile, isTablet, size),
+                      ...pages,
                     ],
                   ),
                 ),
@@ -96,125 +98,165 @@ class _LandingPageState extends State<LandingPage>
     );
   }
 
-  Widget _buildHeroSection(bool isMobile) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 80),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return isMobile
+  // 🧍 Hero Section
+  Widget _buildHeroSection(bool isMobile, bool isTablet, Size size) {
+    return SingleChildScrollView(
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 16 : 20,
+        vertical: isMobile ? 60 : 100,
+      ),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          child: isMobile
               ? Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: _buildHeroContent(isMobile),
+                  children: _buildHeroContent(isMobile, isTablet),
                 )
               : Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: _buildHeroContent(isMobile),
-                );
-        },
-      ),
-    );
-  }
-
-  List<Widget> _buildHeroContent(bool isMobile) {
-    final left = Flexible(
-      flex: 5,
-      child: Column(
-        crossAxisAlignment:
-            isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 20),
-          ShaderMask(
-            shaderCallback: (bounds) => const LinearGradient(
-              colors: [Colors.cyanAccent, Colors.greenAccent],
-            ).createShader(bounds),
-            child: Text(
-              "HI, I'M",
-              style: TextStyle(
-                fontSize: isMobile ? 20 : 36,
-                letterSpacing: 2,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          GlitchText(
-            text: "SHAKIL MAHMUD",
-            textStyle: TextStyle(
-              fontSize: isMobile ? 40 : 72,
-              fontWeight: FontWeight.bold,
-            ),
-            glitchUpDown: true,
-            randomLetterSwitch: true,
-          ),
-          const SizedBox(height: 10),
-          ShaderMask(
-            shaderCallback: (bounds) => const LinearGradient(
-              colors: [Colors.greenAccent, Colors.cyanAccent],
-            ).createShader(bounds),
-            child: Text(
-              "Flutter Developer | Problem Solver | Tech Enthusiast",
-              style: TextStyle(
-                fontSize: isMobile ? 16 : 26,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          const SizedBox(height: 24),
-          _buildSkillChips(isMobile),
-          const SizedBox(height: 32),
-          Text(
-            "I build elegant, high-performance mobile apps that merge creativity and technology.\n"
-            "Specialized in Flutter, Firebase, REST APIs, and scalable app architecture.\n"
-            "Let’s create something unforgettable — crafted with precision and passion.",
-            style: TextStyle(
-              fontSize: isMobile ? 14 : 16,
-              height: 1.6,
-              color: Colors.white70,
-            ),
-          ),
-          const SizedBox(height: 32),
-          _buildActionButtons(isMobile),
-        ],
-      ),
-    );
-
-    final right = Flexible(
-      flex: 4,
-      child: Center(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            // glowing particle halo
-            Container(
-              width: isMobile ? 260 : 400,
-              height: isMobile ? 260 : 400,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: RadialGradient(
-                  colors: [
-                    Colors.greenAccent.withOpacity(0.2),
-                    Colors.transparent,
-                  ],
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children: _buildHeroContent(isMobile, isTablet),
                 ),
-              ),
-            ),
-            GlitchImage(
-              imageProvider: const AssetImage("assets/images/profile.png"),
-              maxWidth: isMobile ? 240 : 380,
-              maxHeight: isMobile ? 240 : 380,
-            ),
-          ],
         ),
       ),
     );
-
-    return isMobile
-        ? [left, const SizedBox(height: 40), right]
-        : [left, const SizedBox(width: 60), right];
   }
+
+List<Widget> _buildHeroContent(bool isMobile, bool isTablet) {
+  final left = Flexible(
+    flex: 5,
+    child: Column(
+      crossAxisAlignment:
+          isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const SizedBox(height: 20),
+        ShaderMask(
+          shaderCallback: (bounds) => const LinearGradient(
+            colors: [Colors.green, Colors.greenAccent],
+          ).createShader(bounds),
+          child: Text(
+            "HI, I'M",
+            style: TextStyle(
+              fontSize: isMobile
+                  ? 20
+                  : isTablet
+                      ? 28
+                      : 36,
+              letterSpacing: 2,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        GlitchText(
+          text: "SHAKIL MAHMUD",
+          textStyle: TextStyle(
+            fontSize: isMobile
+                ? 36
+                : isTablet
+                    ? 56
+                    : 72,
+            fontWeight: FontWeight.bold,
+          ),
+          glitchUpDown: true,
+          randomLetterSwitch: true,
+        ),
+        const SizedBox(height: 10),
+        ShaderMask(
+          shaderCallback: (bounds) => const LinearGradient(
+            colors: [Colors.greenAccent, Colors.green],
+          ).createShader(bounds),
+          child: Text(
+            "Flutter Developer | Problem Solver | Tech Enthusiast",
+            textAlign: isMobile ? TextAlign.center : TextAlign.start,
+            style: TextStyle(
+              fontSize: isMobile
+                  ? 14
+                  : isTablet
+                      ? 18
+                      : 24,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        const SizedBox(height: 24),
+        _buildSkillChips(isMobile),
+        const SizedBox(height: 32),
+        if(!isMobile) Text(
+          "I build elegant, high-performance mobile apps that merge creativity and technology.\n"
+          "Specialized in Flutter, Firebase, REST APIs, and scalable app architecture.\n"
+          "Let’s create something unforgettable — crafted with precision and passion.",
+          textAlign: isMobile ? TextAlign.center : TextAlign.start,
+          style: TextStyle(
+            fontSize: isMobile
+                ? 13
+                : isTablet
+                    ? 15
+                    : 16,
+            height: 1.6,
+            color: Colors.white70,
+          ),
+        ),
+        const SizedBox(height: 32),
+        _buildActionButtons(isMobile),
+      ],
+    ),
+  );
+
+  final right = Flexible(
+    flex: 4,
+    child: Center(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            width: isMobile
+                ? 220
+                : isTablet
+                    ? 300
+                    : 400,
+            height: isMobile
+                ? 220
+                : isTablet
+                    ? 300
+                    : 400,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: RadialGradient(
+                colors: [
+                  Colors.greenAccent.withOpacity(0.2),
+                  Colors.transparent,
+                ],
+              ),
+            ),
+          ),
+          GlitchImage(
+            imageProvider: const AssetImage("assets/images/profile.png"),
+            maxWidth: isMobile
+                ? 200
+                : isTablet
+                    ? 280
+                    : 380,
+            maxHeight: isMobile
+                ? 200
+                : isTablet
+                    ? 280
+                    : 380,
+          ),
+        ],
+      ),
+    ),
+  );
+
+  return isMobile
+        ? [right, const SizedBox(height: 40), left]
+        : [left, const SizedBox(width: 60), right];
+}
+
 
   Widget _buildSkillChips(bool isMobile) {
     final skills = [
@@ -231,6 +273,7 @@ class _LandingPageState extends State<LandingPage>
     return Wrap(
       spacing: 8,
       runSpacing: 8,
+      alignment: isMobile ? WrapAlignment.center : WrapAlignment.start,
       children: skills.map((s) {
         return AnimatedContainer(
           duration: const Duration(milliseconds: 600),
@@ -255,25 +298,24 @@ class _LandingPageState extends State<LandingPage>
 
   Widget _buildActionButtons(bool isMobile) {
     final buttons = [
-      _glowButton("Hire Me", Icons.work_outline, Colors.greenAccent, () {
-        setState(() => currentIndex = 2);
+      _glowButton("Projects", Icons.dashboard_outlined, Colors.green, () {
+        setState(() => currentIndex = 0);
+        _pageController.jumpToPage(1);
+      }),
+      _glowButton("About Me", Icons.person_outline, Colors.green, () {
+        setState(() => currentIndex = 1);
         _pageController.jumpToPage(2);
       }),
-      _glowButton("Projects", Icons.dashboard_outlined, Colors.cyanAccent, () {
-        setState(() => currentIndex = 0);
-        _pageController.jumpToPage(0);
-      }),
-      _glowButton("About Me", Icons.person_outline, Colors.purpleAccent, () {
-        setState(() => currentIndex = 1);
-        _pageController.jumpToPage(1);
+      _glowButton("Hire Me", Icons.work_outline, Colors.green, () {
+        setState(() => currentIndex = 2);
+        _pageController.jumpToPage(3);
       }),
     ];
 
     return Wrap(
       spacing: 14,
       runSpacing: 10,
-      alignment:
-          isMobile ? WrapAlignment.center : WrapAlignment.start,
+      alignment: isMobile ? WrapAlignment.center : WrapAlignment.start,
       children: buttons,
     );
   }
@@ -340,7 +382,7 @@ class _LandingPageState extends State<LandingPage>
               onItemTap: (i) {
                 setState(() => currentIndex = i);
                 _pageController.animateToPage(i,
-                    duration: const Duration(milliseconds: 600),
+                    duration: const Duration(milliseconds: 700),
                     curve: Curves.easeInOut);
               },
             ),
