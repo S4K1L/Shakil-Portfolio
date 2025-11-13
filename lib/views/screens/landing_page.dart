@@ -322,7 +322,7 @@ class _LandingPageState extends State<LandingPage>
             randomLetterSwitch: false,
           ),
           GlitchText(
-            text: "⚡Flutter Developer | Problem Solver | C/C++ | Dart | Python | RESTApi | Firebase/Supabase | Data Structure & Algorithm | OOP 😈",
+            text: "Flutter Developer | Problem Solver | C/C++ | Dart | Python | RESTApi | Firebase/Supabase | Data Structure & Algorithm | OOP",
             textStyle: TextStyle(
               fontSize: isMobile ? 16 : 34,
               fontWeight: FontWeight.w600,

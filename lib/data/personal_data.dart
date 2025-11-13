@@ -70,4 +70,158 @@ class PersonalData {
     "Intra Dept Project Showcase - SMUCT - Champion",
     "DUET Project Showcase 2023 - DUET (5th)",
   ];
+
+final List<Map<String, dynamic>> projects = const [
+  {
+    "name": "Chakra Quiz",
+    "desc": "A calming chakra assessment app with interactive quizzes.",
+    "image": "assets/projects/chakra.png",
+    "tech": [
+      "Flutter",
+      "Django REST Framework",
+      "GetX",
+      "SharedPreferences",
+    ],
+    "features": [
+      "Interactive chakra quiz with scoring",
+      "Personalized results + tips",
+      "Local progress persistence",
+    ],
+    "github": "https://github.com/S4K1L/Kunchi-Hidup.git",
+    "date": "10/2025",
+  },
+  {
+    "name": "The Clue",
+    "desc": "A modern crypto learning app with bite-sized lessons.",
+    "image": "assets/projects/theClue.png",
+    "tech": [
+      "Flutter",
+      "Django REST Framework",
+      "GetX",
+      "SharedPreferences",
+    ],
+    "features": [
+      "Guided learning modules",
+      "Progress tracking & quizzes",
+      "Offline lesson caching",
+    ],
+    "github": "https://github.com/S4K1L/Crypto-Education.git",
+    "date": "04/2025",
+  },
+  {
+    "name": "App Rolling",
+    "desc": "A sleek car rental UI concept with live tracking.",
+    "image": "assets/projects/uber.png",
+    "tech": [
+      "Flutter",
+      "Node.js REST API",
+      "GetX",
+      "SharedPreferences",
+    ],
+    "features": [
+      "Real-time vehicle tracking",
+      "Animated booking flow",
+      "Booking history & receipts",
+    ],
+    "github": "https://github.com/S4K1L/Uber.git",
+    "date": "09/2025",
+  },
+  {
+    "name": "Map’d",
+    "desc": "A smart travel companion with AI route planning.",
+    "image": "assets/projects/mapd.png",
+    "tech": [
+      "Flutter",
+      "Django REST Framework",
+      "GetX",
+      "SharedPreferences",
+    ],
+    "features": [
+      "Offline maps & navigation",
+      "AI trip suggestions",
+      "Community chat & recommendations",
+    ],
+    "store": "https://play.google.com/store/apps/details?id=com.wanderlink.app",
+    "github": "https://github.com/S4K1L/Mapd.git",
+    "date": "08/2025",
+  },
+  {
+    "name": "re:",
+    "desc": "A next-gen social app for authentic sharing.",
+    "image": "assets/projects/re.png",
+    "tech": [
+      "Flutter",
+      "Django REST Framework",
+      "GetX",
+      "SharedPreferences",
+    ],
+    "features": [
+      "Real-time chatting",
+      "Smart video reaction shares",
+      "Auto delete of old media in 48 hours",
+    ],
+    "github": "https://github.com/S4K1L/REE-Social-Media.git",
+    "date": "11/2025",
+  },
+  {
+  "name": "Quick Bite",
+  "desc": "A fast-paced food delivery app with real-time order tracking and a user-friendly interface.",
+  "image": "assets/projects/quick_bite.png",
+  "tech": [
+    "Flutter",
+    "Firebase",
+    "GetX",
+    "SharedPreferences"
+  ],
+  "features": [
+    "Real-time order tracking",
+    "Personalized recommendations and tips",
+    "Role-based access control"
+  ],
+  "github": "https://github.com/S4K1L/QUICK-BITES.git",
+  "date": "07/2024"
+},
+
+{
+  "name": "Grocery Master",
+  "desc": "A comprehensive grocery shopping app with real-time inventory tracking and seamless checkout experience.",
+  "image": "assets/projects/grocery_master.png",
+  "tech": [
+    "Flutter",
+    "Firebase",
+    "GetX",
+    "Stripe API"
+  ],
+  "features": [
+    "Browse and search groceries with ease",
+    "Real-time stock updates and availability",
+    "Secure checkout experience"
+  ],
+  "github": "https://github.com/S4K1L/Grocery-Master.git",
+  "date": "06/2024"
+},
+
+{
+  "name": "CadeFit",
+  "desc": "A fitness tracking and workout app designed to help users achieve their health goals and stay motivated.",
+  "image": "assets/projects/cadefit.png",
+  "tech": [
+    "Flutter",
+    "Firebase",
+    "GetX",
+    "SharedPreferences"
+  ],
+  "features": [
+    "Personalized workout plans",
+    "Track fitness progress and milestones",
+    "Set goals and get motivation"
+  ],
+  "github": "https://github.com/S4K1L/CadeFit.git",
+  "date": "05/2024"
+}
+
+
+
+];
+
 }

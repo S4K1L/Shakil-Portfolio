@@ -81,14 +81,17 @@ class _SkillCardState extends State<_SkillCard> {
           ],
         ),
         child: Center(
-          child: Text(
-            widget.skill.toUpperCase(),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: _hover ? themeColor : Colors.white70,
-              fontWeight: FontWeight.bold,
-              // fontSize: 15,
-              letterSpacing: 1.5,
+          child: Padding(
+            padding: const EdgeInsets.all(2),
+            child: Text(
+              widget.skill.toUpperCase(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: _hover ? themeColor : Colors.white70,
+                fontWeight: FontWeight.w400,
+                // fontSize: 15,
+                letterSpacing: .5,
+              ),
             ),
           ),
         ),
