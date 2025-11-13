@@ -27,40 +27,39 @@ class PersonalData {
     },
   ];
 
-  final workExperience = const [
-    {
-      "role": "Mid-Level Flutter Developer (Onsite)",
-      "company": "Join Venture AI (Betopia Group)",
-      "duration": "08/2025 - Present",
-      "tasks": [
-        "Developed and maintained cross-platform mobile apps with Flutter & Dart.",
-        "Integrated REST APIs, Firebase services, and third-party SDKs.",
-        "Collaborated with designers and backend engineers to deliver high-quality features.",
-      ],
-    },
-    {
-      "role": "Mobile App Developer (Remote)",
-      "company": "mADestic Digital",
-      "duration": "04/2025 - 08/2025",
-      "tasks": [
-        "Architected and launched a high-performance mobile app, achieving near-perfect store rating.",
-        "Implemented advanced caching and code optimization strategies.",
-        "Leveraged native device APIs and external services for cross-platform features.",
-        "Refined UI components based on user-centric design principles.",
-        "Integrated multiple RESTful APIs and third-party services.",
-      ],
-    },
-    {
-      "role": "Software Developer (Remote)",
-      "company": "Globalite Solutions, Malaysia",
-      "duration": "03/2024 - 04/2025",
-      "tasks": [
-        "Engineered and maintained robust Flutter apps, boosting user retention.",
-        "Projects: Expense Tracker, Mental Health Care Bot (GPT4o), Ecommerce App.",
-        "GetX state management & secure authentication integration.",
-      ],
-    },
-  ];
+final workExperience = const [
+  {
+    "role": "Mid-Level Flutter Developer (Onsite)",
+    "company": "Join Venture AI (Betopia Group)",
+    "duration": "08/2025 - Present",
+    "tasks": [
+      "Developed and maintained cross-platform mobile apps using Flutter & Dart.",
+      "Integrated REST APIs, Firebase services, and AI-based modules.",
+      "Collaborated with UI/UX designers and backend engineers to deliver pixel-perfect features."
+    ],
+  },
+  {
+    "role": "Mobile App Developer (Remote)",
+    "company": "mADestic Digital",
+    "duration": "04/2025 - 08/2025",
+    "tasks": [
+      "Built a high-performance mobile app",
+      "Implemented caching, performance optimization, and intuitive UI design.",
+      "Integrated multiple RESTful APIs and modern animations."
+    ],
+  },
+  {
+    "role": "Software Developer (Remote)",
+    "company": "Globalite Solutions, Malaysia",
+    "duration": "03/2024 - 04/2025",
+    "tasks": [
+      "Developed and maintained multiple production-grade Flutter applications.",
+      "Projects include: Expense Tracker, Mental Health Care Bot (GPT-4o), Ecommerce Platform.",
+      "Worked with GetX, Firebase Auth, and secure data persistence."
+    ],
+  },
+];
+
 
   final achievements = const [
     "Intra Dept Programming Competition - SMUCT - Champion",
@@ -195,7 +194,7 @@ final List<Map<String, dynamic>> projects = const [
   "features": [
     "Browse and search groceries with ease",
     "Real-time stock updates and availability",
-    "Secure checkout experience"
+    "Secure checkout"
   ],
   "github": "https://github.com/S4K1L/Grocery-Master.git",
   "date": "06/2024"
