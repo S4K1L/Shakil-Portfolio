@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomSlimyCard extends StatefulWidget {
@@ -67,11 +66,11 @@ class _CustomSlimyCardState extends State<CustomSlimyCard>
             width: 500,
             height: height,
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.9),
+              color: Colors.black.withValues(alpha: 0.9),
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
-                  color: themeColor.withOpacity(0.4),
+                  color: themeColor.withValues(alpha: 0.4),
                   blurRadius: 25,
                   spreadRadius: 2,
                   offset: const Offset(0, 10),
@@ -87,7 +86,7 @@ class _CustomSlimyCardState extends State<CustomSlimyCard>
                   child: Image.asset(
                     widget.image,
                     fit: BoxFit.cover,
-                    color: Colors.black.withOpacity(0.6),
+                    color: Colors.black.withValues(alpha: 0.6),
                     colorBlendMode: BlendMode.darken,
                   ),
                 ),
@@ -101,7 +100,7 @@ class _CustomSlimyCardState extends State<CustomSlimyCard>
                         radius: 35,
                         backgroundImage: AssetImage(widget.image),
                       ),
-                      
+
                       const SizedBox(height: 12),
                       Text(
                         widget.name,
@@ -212,9 +211,9 @@ class _CustomSlimyCardState extends State<CustomSlimyCard>
                                     if (widget.onStoreTap != null)
                                       ElevatedButton.icon(
                                         onPressed: widget.onStoreTap,
-                                        icon: const Icon(Icons.public,
+                                        icon: Icon(Icons.telegram,
                                             color: Colors.black, size: 16),
-                                        label: const Text("App Store"),
+                                        label: const Text("PlayStore"),
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.white,
                                           foregroundColor: Colors.black,

@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:s4k1l/utils/theme/theme.dart';
-import 'package:s4k1l/views/screens/all_in_one.dart';
 import 'package:s4k1l/views/screens/landing_page.dart';
 
 void main() {

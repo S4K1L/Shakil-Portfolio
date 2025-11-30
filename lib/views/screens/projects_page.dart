@@ -12,8 +12,6 @@ class ProjectsPage extends StatefulWidget {
 }
 
 class _ProjectsPageState extends State<ProjectsPage> {
-
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -41,26 +39,27 @@ class _ProjectsPageState extends State<ProjectsPage> {
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GlitchText(
-                  text: "Projects",
-                  textStyle: TextStyle(
-                    fontSize: isMobile ? 32 : 48,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green,
-                  ),
-                  randomLetterSwitch: true,
-                  glitchUpDown: true,
-                ),
-                const SizedBox(height: 20),
-                ProjectsGrid(
-                  projects: PersonalData().projects,
-                  isMobile: MediaQuery.of(context).size.width < 600,
-                  onGitHubTap: (url) => _launchUrl(url),
-                ),
-              ],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GlitchText(
+            text: "Projects",
+            textStyle: TextStyle(
+              fontSize: isMobile ? 32 : 48,
+              fontWeight: FontWeight.bold,
+              color: Colors.green,
             ),
+            randomLetterSwitch: true,
+            glitchUpDown: true,
+          ),
+          const SizedBox(height: 20),
+          ProjectsGrid(
+            projects: PersonalData().projects,
+            isMobile: MediaQuery.of(context).size.width < 600,
+            onGitHubTap: (url) => _launchUrl(url),
+            onStoreTap: (url) => _launchUrl(url),
+          ),
+        ],
+      ),
     );
   }
 }

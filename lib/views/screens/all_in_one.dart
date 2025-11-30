@@ -41,7 +41,7 @@ class PortfolioLandingPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 40),
               child: Text(
                 "© 2025 Shakil Mahmud | Built with Flutter 💙",
-                style: TextStyle(color: Colors.white.withOpacity(0.5)),
+                style: TextStyle(color: Colors.white.withValues(alpha: 0.5)),
               ),
             ),
           ],

@@ -123,140 +123,140 @@ class _LandingPageState extends State<LandingPage>
     );
   }
 
-List<Widget> _buildHeroContent(bool isMobile, bool isTablet) {
-  final left = Flexible(
-    flex: 5,
-    child: Column(
-      crossAxisAlignment:
-          isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const SizedBox(height: 20),
-        ShaderMask(
-          shaderCallback: (bounds) => const LinearGradient(
-            colors: [Colors.green, Colors.greenAccent],
-          ).createShader(bounds),
-          child: Text(
-            "HI, I'M",
-            style: TextStyle(
-              fontSize: isMobile
-                  ? 20
-                  : isTablet
-                      ? 28
-                      : 36,
-              letterSpacing: 2,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        const SizedBox(height: 10),
-        GlitchText(
-          text: "SHAKIL MAHMUD",
-          textStyle: TextStyle(
-            fontSize: isMobile
-                ? 36
-                : isTablet
-                    ? 56
-                    : 72,
-            fontWeight: FontWeight.bold,
-          ),
-          glitchUpDown: true,
-          randomLetterSwitch: true,
-        ),
-        const SizedBox(height: 10),
-        ShaderMask(
-          shaderCallback: (bounds) => const LinearGradient(
-            colors: [Colors.greenAccent, Colors.green],
-          ).createShader(bounds),
-          child: Text(
-            "Flutter Developer | Problem Solver | Tech Enthusiast",
-            textAlign: isMobile ? TextAlign.center : TextAlign.start,
-            style: TextStyle(
-              fontSize: isMobile
-                  ? 14
-                  : isTablet
-                      ? 18
-                      : 24,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        const SizedBox(height: 24),
-        _buildSkillChips(isMobile),
-        const SizedBox(height: 32),
-        if(!isMobile) Text(
-          "I build elegant, high-performance mobile apps that merge creativity and technology.\n"
-          "Specialized in Flutter, Firebase, REST APIs, and scalable app architecture.\n"
-          "Let’s create something unforgettable — crafted with precision and passion.",
-          textAlign: isMobile ? TextAlign.center : TextAlign.start,
-          style: TextStyle(
-            fontSize: isMobile
-                ? 13
-                : isTablet
-                    ? 15
-                    : 16,
-            height: 1.6,
-            color: Colors.white70,
-          ),
-        ),
-        const SizedBox(height: 32),
-        _buildActionButtons(isMobile),
-      ],
-    ),
-  );
-
-  final right = Flexible(
-    flex: 4,
-    child: Center(
-      child: Stack(
-        alignment: Alignment.center,
+  List<Widget> _buildHeroContent(bool isMobile, bool isTablet) {
+    final left = Flexible(
+      flex: 5,
+      child: Column(
+        crossAxisAlignment:
+            isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            width: isMobile
-                ? 220
-                : isTablet
-                    ? 300
-                    : 400,
-            height: isMobile
-                ? 220
-                : isTablet
-                    ? 300
-                    : 400,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: RadialGradient(
-                colors: [
-                  Colors.greenAccent.withOpacity(0.2),
-                  Colors.transparent,
-                ],
+          const SizedBox(height: 20),
+          ShaderMask(
+            shaderCallback: (bounds) => const LinearGradient(
+              colors: [Colors.green, Colors.greenAccent],
+            ).createShader(bounds),
+            child: Text(
+              "HI, I'M",
+              style: TextStyle(
+                fontSize: isMobile
+                    ? 20
+                    : isTablet
+                        ? 28
+                        : 36,
+                letterSpacing: 2,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
           ),
-          GlitchImage(
-            imageProvider: const AssetImage("assets/images/profile.png"),
-            maxWidth: isMobile
-                ? 200
-                : isTablet
-                    ? 280
-                    : 380,
-            maxHeight: isMobile
-                ? 200
-                : isTablet
-                    ? 280
-                    : 380,
+          const SizedBox(height: 10),
+          GlitchText(
+            text: "SHAKIL MAHMUD",
+            textStyle: TextStyle(
+              fontSize: isMobile
+                  ? 36
+                  : isTablet
+                      ? 56
+                      : 72,
+              fontWeight: FontWeight.bold,
+            ),
+            glitchUpDown: true,
+            randomLetterSwitch: true,
           ),
+          const SizedBox(height: 10),
+          ShaderMask(
+            shaderCallback: (bounds) => const LinearGradient(
+              colors: [Colors.greenAccent, Colors.green],
+            ).createShader(bounds),
+            child: Text(
+              "Flutter Developer | Problem Solver | Tech Enthusiast",
+              textAlign: isMobile ? TextAlign.center : TextAlign.start,
+              style: TextStyle(
+                fontSize: isMobile
+                    ? 14
+                    : isTablet
+                        ? 18
+                        : 24,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          _buildSkillChips(isMobile),
+          const SizedBox(height: 32),
+          if (!isMobile)
+            Text(
+              "I build elegant, high-performance mobile apps that merge creativity and technology.\n"
+              "Specialized in Flutter, Firebase, REST APIs, and scalable app architecture.\n"
+              "Let’s create something unforgettable — crafted with precision and passion.",
+              textAlign: isMobile ? TextAlign.center : TextAlign.start,
+              style: TextStyle(
+                fontSize: isMobile
+                    ? 13
+                    : isTablet
+                        ? 15
+                        : 16,
+                height: 1.6,
+                color: Colors.white70,
+              ),
+            ),
+          const SizedBox(height: 32),
+          _buildActionButtons(isMobile),
         ],
       ),
-    ),
-  );
+    );
 
-  return isMobile
+    final right = Flexible(
+      flex: 4,
+      child: Center(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              width: isMobile
+                  ? 220
+                  : isTablet
+                      ? 300
+                      : 400,
+              height: isMobile
+                  ? 220
+                  : isTablet
+                      ? 300
+                      : 400,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: RadialGradient(
+                  colors: [
+                    Colors.greenAccent.withValues(alpha: 0.2),
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+            ),
+            GlitchImage(
+              imageProvider: const AssetImage("assets/images/profile.png"),
+              maxWidth: isMobile
+                  ? 200
+                  : isTablet
+                      ? 280
+                      : 380,
+              maxHeight: isMobile
+                  ? 200
+                  : isTablet
+                      ? 280
+                      : 380,
+            ),
+          ],
+        ),
+      ),
+    );
+
+    return isMobile
         ? [right, const SizedBox(height: 40), left]
         : [left, const SizedBox(width: 60), right];
-}
-
+  }
 
   Widget _buildSkillChips(bool isMobile) {
     final skills = [
@@ -279,9 +279,10 @@ List<Widget> _buildHeroContent(bool isMobile, bool isTablet) {
           duration: const Duration(milliseconds: 600),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.05),
+            color: Colors.white.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Colors.greenAccent.withOpacity(0.4)),
+            border:
+                Border.all(color: Colors.greenAccent.withValues(alpha: 0.4)),
           ),
           child: Text(
             s,
@@ -329,16 +330,16 @@ List<Widget> _buildHeroContent(bool isMobile, bool isTablet) {
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: color.withOpacity(0.6), width: 1),
+          border: Border.all(color: color.withValues(alpha: 0.6), width: 1),
           gradient: LinearGradient(
             colors: [
-              color.withOpacity(0.08),
-              Colors.white.withOpacity(0.03),
+              color.withValues(alpha: 0.08),
+              Colors.white.withValues(alpha: 0.03),
             ],
           ),
           boxShadow: [
             BoxShadow(
-              color: color.withOpacity(0.3),
+              color: color.withValues(alpha: 0.3),
               blurRadius: 12,
               spreadRadius: 1,
             ),
@@ -371,9 +372,9 @@ List<Widget> _buildHeroContent(bool isMobile, bool isTablet) {
         child: Container(
           height: 70,
           decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.25),
+            color: Colors.black.withValues(alpha: 0.25),
             border: Border(
-              top: BorderSide(color: Colors.white.withOpacity(0.08)),
+              top: BorderSide(color: Colors.white.withValues(alpha: 0.08)),
             ),
           ),
           child: Center(

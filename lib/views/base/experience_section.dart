@@ -26,7 +26,7 @@ class WorkExperienceSection extends StatelessWidget {
                   Container(
                     width: 2,
                     height: 120,
-                    color: Colors.green.withOpacity(0.5),
+                    color: Colors.green.withValues(alpha: 0.5),
                   ),
                 ],
               ),
@@ -35,12 +35,12 @@ class WorkExperienceSection extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.5),
+                    color: Colors.black.withValues(alpha: 0.5),
                     border: Border.all(color: Colors.greenAccent, width: 1),
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.greenAccent.withOpacity(0.2),
+                        color: Colors.greenAccent.withValues(alpha: 0.2),
                         blurRadius: 12,
                         offset: const Offset(0, 4),
                       ),
@@ -54,7 +54,7 @@ class WorkExperienceSection extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.green.withOpacity(0.95),
+                          color: Colors.green.withValues(alpha: 0.95),
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -82,7 +82,7 @@ class WorkExperienceSection extends StatelessWidget {
                               Text(
                                 "• ",
                                 style: TextStyle(
-                                  color: Colors.green.withOpacity(.95),
+                                  color: Colors.green.withValues(alpha: .95),
                                   fontSize: 14,
                                 ),
                               ),

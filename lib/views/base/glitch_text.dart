@@ -85,7 +85,8 @@ class _GlitchTextState extends State<GlitchText>
 
   @override
   Widget build(BuildContext context) {
-    final baseStyle = widget.textStyle?.copyWith(color: Colors.green.withOpacity(0.95)) ??
+    final baseStyle = widget.textStyle
+            ?.copyWith(color: Colors.green.withValues(alpha: 0.95)) ??
         const TextStyle(fontSize: 36, color: Colors.white);
 
     return AnimatedBuilder(
@@ -95,7 +96,6 @@ class _GlitchTextState extends State<GlitchText>
         final phase = (math.sin(t * 2 * math.pi) + 1) / 2;
         final dx = 2.0 + phase * 6.0;
         final small = _randOffset(dx * 0.3);
-
 
         return Stack(
           alignment: Alignment.center,
@@ -107,7 +107,6 @@ class _GlitchTextState extends State<GlitchText>
                 style: baseStyle,
                 textAlign: TextAlign.center,
               ),
-              
             ),
           ],
         );

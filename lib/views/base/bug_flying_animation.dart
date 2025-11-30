@@ -88,6 +88,7 @@ class _BugFollowAnimationState extends State<BugFollowAnimation>
         child: Transform(
           alignment: Alignment.center,
           transform: Matrix4.identity()
+            // ignore: deprecated_member_use
             ..scale(facingRight ? -1.0 : 1.0, 1.0), // flip horizontally
           child: SizedBox(
             width: 120,

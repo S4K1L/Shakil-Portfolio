@@ -7,9 +7,9 @@ class TopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = [
-      Colors.redAccent.withOpacity(0.9),
-      Colors.amberAccent.withOpacity(0.9),
-      Colors.greenAccent.withOpacity(0.9),
+      Colors.redAccent.withValues(alpha: 0.9),
+      Colors.amberAccent.withValues(alpha: 0.9),
+      Colors.greenAccent.withValues(alpha: 0.9),
     ];
 
     return Container(
@@ -17,7 +17,8 @@ class TopBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: Colors.white.withOpacity(0.1), width: 1),
+          bottom:
+              BorderSide(color: Colors.white.withValues(alpha: 0.1), width: 1),
         ),
       ),
       child: Row(

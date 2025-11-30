@@ -21,7 +21,7 @@ class EducationSection extends StatelessWidget {
             Container(
               width: 2,
               height: 120,
-              color: Colors.green.withOpacity(0.5),
+              color: Colors.green.withValues(alpha: 0.5),
             ),
           ],
         ),
@@ -34,12 +34,12 @@ class EducationSection extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(vertical: 8),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.5),
+                  color: Colors.black.withValues(alpha: 0.5),
                   border: Border.all(color: Colors.greenAccent, width: 1),
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.green.withOpacity(0.2),
+                      color: Colors.green.withValues(alpha: 0.2),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
@@ -53,7 +53,7 @@ class EducationSection extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.green.withOpacity(0.95),
+                        color: Colors.green.withValues(alpha: 0.95),
                       ),
                     ),
                     const SizedBox(height: 4),

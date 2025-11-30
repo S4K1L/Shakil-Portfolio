@@ -16,7 +16,7 @@ class HireMePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final isMobile = size.width < 700;
-    final accent = Colors.green.withOpacity(0.95);
+    final accent = Colors.green.withValues(alpha: 0.95);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
@@ -111,7 +111,9 @@ class HireMePage extends StatelessWidget {
                   runSpacing: 10,
                   alignment: WrapAlignment.center,
                   children: [
-                    _contactButton(Icons.email_outlined, "Email Me",
+                    _contactButton(
+                        Icons.email_outlined,
+                        "Email Me",
                         () => _launchUrl(
                             "mailto:69shakilmahmud@gmail.com?subject=Hiring Opportunity&body=Hi Shakil, I’d like to discuss a project with you.")),
                     _contactButton(Icons.link, "LinkedIn",
@@ -122,7 +124,9 @@ class HireMePage extends StatelessWidget {
                         () => _launchUrl("https://www.facebook.com/s4k1ll")),
                     _contactButton(Icons.phone, "Contact",
                         () => _launchUrl("tel:+8801941271076")),
-                    _contactButton(Icons.picture_as_pdf_rounded, "View CV",
+                    _contactButton(
+                        Icons.picture_as_pdf_rounded,
+                        "View CV",
                         () => _launchUrl(
                             "https://drive.google.com/file/d/1-NjeL20TYeViROxPFXh0GT-HBnFGH18k/view?usp=sharing")),
                   ],
@@ -173,9 +177,9 @@ class HireMePage extends StatelessWidget {
       width: width,
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
+        color: Colors.white.withValues(alpha: .05),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: accent.withOpacity(0.4)),
+        border: Border.all(color: accent.withValues(alpha: 0.4)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -197,52 +201,6 @@ class HireMePage extends StatelessWidget {
     );
   }
 
-  Widget _experienceCard(Map<String, dynamic> exp, Color accent, bool isMobile) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 12),
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: accent.withOpacity(0.3)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(exp["role"],
-              style: TextStyle(
-                  fontSize: isMobile ? 16 : 18,
-                  fontWeight: FontWeight.bold,
-                  color: accent)),
-          const SizedBox(height: 4),
-          Text("${exp["company"]} • ${exp["duration"]}",
-              style: const TextStyle(color: Colors.white70, fontSize: 13)),
-          const SizedBox(height: 8),
-          ...List.generate(
-            (exp["tasks"] as List).length,
-            (i) => Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text("• ",
-                      style: TextStyle(color: Colors.white60, fontSize: 13)),
-                  Expanded(
-                    child: Text(
-                      exp["tasks"][i],
-                      style:
-                          const TextStyle(color: Colors.white70, fontSize: 13),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _contactButton(IconData icon, String label, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
@@ -251,14 +209,14 @@ class HireMePage extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.05),
+          color: Colors.white.withValues(alpha: 0.05),
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.green.withOpacity(0.95)),
+          border: Border.all(color: Colors.green.withValues(alpha: 0.95)),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: Colors.green.withOpacity(0.95), size: 18),
+            Icon(icon, color: Colors.green.withValues(alpha: 0.95), size: 18),
             const SizedBox(width: 8),
             Text(label,
                 style: const TextStyle(color: Colors.white70, fontSize: 14)),

@@ -139,7 +139,7 @@ class _GlitchImageState extends State<GlitchImage>
                     fit: BoxFit.contain,
                     width: width,
                     height: height,
-                    color: Colors.white.withOpacity(0.02),
+                    color: Colors.white.withValues(alpha: 0.02),
                     colorBlendMode: BlendMode.modulate,
                   ),
 
@@ -155,7 +155,7 @@ class _GlitchImageState extends State<GlitchImage>
                   //       sigmaY: 1.2 * phase.abs(),
                   //     ),
                   //     child: Container(
-                  //       color: Colors.white.withOpacity(0.02 * phase.abs()),
+                  //       color: Colors.white.withValues(alpha: 0.02 * phase.abs()),
                   //     ),
                   //   ),
                   // ),
@@ -163,11 +163,12 @@ class _GlitchImageState extends State<GlitchImage>
                   // Border and glow
                   Container(
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white.withOpacity(0.04)),
+                      border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.04)),
                       boxShadow: [
                         BoxShadow(
                           color: const Color(0xFF00FFD5)
-                              .withOpacity(0.08 + 0.03 * phase.abs()),
+                              .withValues(alpha: 0.08 + 0.03 * phase.abs()),
                           blurRadius: 24,
                           spreadRadius: 2,
                         ),

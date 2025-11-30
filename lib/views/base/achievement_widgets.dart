@@ -19,7 +19,8 @@ class AchievementsSection extends StatelessWidget {
                 Expanded(
                   child: Text(
                     ach,
-                    style: TextStyle(color: Colors.green.withOpacity(0.95)),
+                    style:
+                        TextStyle(color: Colors.green.withValues(alpha: 0.95)),
                   ),
                 ),
               ],

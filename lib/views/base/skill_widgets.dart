@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
 class SkillsSection extends StatelessWidget {
-  final List<String> skills;
+  final List<Map<String, String>> skills;
+
   const SkillsSection({super.key, required this.skills});
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    final width = MediaQuery.of(context).size.width;
 
-    // Calculate number of columns dynamically
-    int crossAxisCount = 3;
-    if (screenWidth > 1400) {
+    int crossAxisCount = 4;
+    if (width > 1400) {
+      crossAxisCount = 10;
+    } else if (width > 1000) {
+      crossAxisCount = 8;
+    } else if (width > 600) {
       crossAxisCount = 6;
-    } else if (screenWidth > 1000) {
-      crossAxisCount = 6;
-    } else if (screenWidth > 700) {
-      crossAxisCount = 4;
     }
 
     return GridView.builder(
@@ -24,75 +24,84 @@ class SkillsSection extends StatelessWidget {
       itemCount: skills.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
-        mainAxisSpacing: 16,
-        crossAxisSpacing: 16,
-        childAspectRatio: 4,
+        crossAxisSpacing: 25,
+        mainAxisSpacing: 25,
+        childAspectRatio: 1,
       ),
-      itemBuilder: (context, index) {
-        return _SkillCard(skill: skills[index]);
+      itemBuilder: (_, index) {
+        return SkillCard(
+          title: skills[index]["name"]!,
+          iconPath: skills[index]["icon"]!,
+        );
       },
     );
   }
 }
 
-class _SkillCard extends StatefulWidget {
-  final String skill;
-  const _SkillCard({required this.skill});
+class SkillCard extends StatefulWidget {
+  final String title;
+  final String iconPath;
+
+  const SkillCard({super.key, required this.title, required this.iconPath});
 
   @override
-  State<_SkillCard> createState() => _SkillCardState();
+  State<SkillCard> createState() => _SkillCardState();
 }
 
-class _SkillCardState extends State<_SkillCard> {
+class _SkillCardState extends State<SkillCard> {
   bool _hover = false;
 
   @override
   Widget build(BuildContext context) {
-    final themeColor = Colors.greenAccent.shade400;
+    final width = MediaQuery.of(context).size.width;
+
+    // --- RESPONSIVE VALUES ---
+    final bool isMobile = width < 450;
+    final bool isTablet = width > 450 && width < 1100;
+
+    final double iconSize = isMobile
+        ? 40
+        : isTablet
+            ? 80
+            : 90;
+    final double padding = isMobile ? 8 : 14;
+
+    // Disable hover on touch devices
+    final bool allowHover = !isMobile;
 
     return MouseRegion(
-      onEnter: (_) => setState(() => _hover = true),
-      onExit: (_) => setState(() => _hover = false),
+      onEnter: (_) {
+        if (allowHover) setState(() => _hover = true);
+      },
+      onExit: (_) {
+        if (allowHover) setState(() => _hover = false);
+      },
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 250),
         curve: Curves.easeOut,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: _hover
-                ? [themeColor.withOpacity(0.3), Colors.black.withOpacity(0.8)]
-                : [Colors.black.withOpacity(0.8), Colors.grey.shade900],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          borderRadius: BorderRadius.circular(4),
+          color: const Color(0xFF121212),
+          borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: _hover ? themeColor : themeColor.withOpacity(0.4),
-            width: 1.3,
+            color: _hover ? Colors.greenAccent : Colors.white12,
+            width: 1.2,
           ),
           boxShadow: [
             BoxShadow(
               color: _hover
-                  ? themeColor.withOpacity(0.5)
-                  : Colors.greenAccent.withOpacity(0.2),
-              blurRadius: _hover ? 20 : 8,
+                  ? Colors.greenAccent.withValues(alpha: .35)
+                  : Colors.black54,
+              blurRadius: _hover ? 25 : 8,
               spreadRadius: _hover ? 2 : 0,
               offset: const Offset(0, 4),
             ),
           ],
         ),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(2),
-            child: Text(
-              widget.skill.toUpperCase(),
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: _hover ? themeColor : Colors.white70,
-                fontWeight: FontWeight.w400,
-                // fontSize: 15,
-                letterSpacing: .5,
-              ),
-            ),
+        child: Padding(
+          padding: EdgeInsets.all(padding),
+          child: SizedBox(
+            height: iconSize,
+            child: Image.asset(widget.iconPath, fit: BoxFit.contain),
           ),
         ),
       ),
