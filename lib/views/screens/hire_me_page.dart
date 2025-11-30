@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:s4k1l/data/personal_data.dart';
 import 'package:s4k1l/views/base/glitch_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -111,24 +112,18 @@ class HireMePage extends StatelessWidget {
                   runSpacing: 10,
                   alignment: WrapAlignment.center,
                   children: [
-                    _contactButton(
-                        Icons.email_outlined,
-                        "Email Me",
-                        () => _launchUrl(
-                            "mailto:69shakilmahmud@gmail.com?subject=Hiring Opportunity&body=Hi Shakil, I’d like to discuss a project with you.")),
+                    _contactButton(Icons.email_outlined, "Email Me",
+                        () => _launchUrl(PersonalData().mail)),
                     _contactButton(Icons.link, "LinkedIn",
-                        () => _launchUrl("https://www.linkedin.com/in/s4k1l/")),
+                        () => _launchUrl(PersonalData().linkedin)),
                     _contactButton(Icons.code_rounded, "GitHub",
-                        () => _launchUrl("https://github.com/S4K1L")),
+                        () => _launchUrl(PersonalData().github)),
                     _contactButton(Icons.facebook, "Facebook",
-                        () => _launchUrl("https://www.facebook.com/s4k1ll")),
+                        () => _launchUrl(PersonalData().facebook)),
                     _contactButton(Icons.phone, "Contact",
-                        () => _launchUrl("tel:+8801941271076")),
-                    _contactButton(
-                        Icons.picture_as_pdf_rounded,
-                        "View CV",
-                        () => _launchUrl(
-                            "https://drive.google.com/file/d/1-NjeL20TYeViROxPFXh0GT-HBnFGH18k/view?usp=sharing")),
+                        () => _launchUrl(PersonalData().contact)),
+                    _contactButton(Icons.picture_as_pdf_rounded, "View CV",
+                        () => _launchUrl(PersonalData().cv)),
                   ],
                 ),
               ],

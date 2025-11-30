@@ -1,29 +1,23 @@
 class PersonalData {
   final String intro =
       "Hi, I'm Shakil Mahmud, a Flutter developer with a proven track record in building high-performance mobile applications, including task management, eCommerce solutions. Proficient in REST API integration and state management using GetX, with a strong commitment to delivering efficient, scalable, and user-friendly applications.";
-  // final skills = const [
-  //   "Dart",
-  //   "C / C++",
-  //   "Python",
-  //   "Problem Solving",
-  //   "Flutter",
-  //   "REST API",
-  //   "Firebase",
-  //   "Supabase",
-  //   "GetX State Management",
-  //   "Github",
-  //   "Git",
-  //   "OOP",
-  //   "Algorithms",
-  //   "MySQL",
-  //   "Figma",
-  //   "IOT",
-  // ];
+
+  final String mail =
+      "mailto:69shakilmahmud@gmail.com?subject=Hiring Opportunity&body=Hi Shakil, I’d like to discuss a project with you.";
+
+  final String linkedin = "https://www.linkedin.com/in/s4k1l/";
+  final String github = "https://github.com/S4K1L";
+  final String facebook = "https://www.facebook.com/s4k1ll";
+  final String contact = "tel:+8801941271076";
+  final String cv =
+      "https://drive.google.com/file/d/1wf8Bd4HA6D4fu4DwW28pxqOyBJE5i6UR/view?usp=sharing";
+  // "https://drive.google.com/file/d/1-NjeL20TYeViROxPFXh0GT-HBnFGH18k/view?usp=sharing";
 
   final skills = const [
     // Core Stack First
     {"name": "FLUTTER", "icon": "assets/icons/flutter.png"},
     {"name": "DART", "icon": "assets/icons/dart.png"},
+    {"name": "GETX", "icon": "assets/icons/getx.png"},
     {"name": "REST API", "icon": "assets/icons/rest_api.png"},
     {"name": "FIREBASE", "icon": "assets/icons/firebase.png"},
     {"name": "SUPABASE", "icon": "assets/icons/supabase.png"},

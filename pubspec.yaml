@@ -16,6 +16,7 @@ dependencies:
   url_launcher:
   firebase_analytics: ^11.3.4
   lottie:
+  animated_background: ^2.0.0
   
 dev_dependencies:
   flutter_test:

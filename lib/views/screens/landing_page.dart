@@ -1,6 +1,10 @@
+// lib/views/screens/landing_page.dart
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:animated_background/animated_background.dart';
+import 'package:s4k1l/data/personal_data.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:s4k1l/views/base/bug_flying_animation.dart';
 import 'package:s4k1l/views/screens/about_me_page.dart';
 import 'package:s4k1l/views/screens/projects_page.dart';
@@ -22,11 +26,34 @@ class _LandingPageState extends State<LandingPage>
   final PageController _pageController = PageController();
   int currentIndex = 0;
 
+  // pages array: hero + your pages
   final pages = [const ProjectsPage(), const AboutMePage(), const HireMePage()];
 
   double mouseX = 0, mouseY = 0;
+
   bool get isMouseConnected =>
       RendererBinding.instance.mouseTracker.mouseIsConnected;
+
+  // small helper to open resume
+  Future<void> _openResume() async {
+    final cvLink = PersonalData().cv;
+    if (await canLaunchUrl(Uri.parse(cvLink))) {
+      await launchUrl(Uri.parse(cvLink));
+    } else {
+      // optionally show a snackbar
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Could not open resume link")),
+        );
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,26 +72,42 @@ class _LandingPageState extends State<LandingPage>
         },
         child: Stack(
           children: [
-            // 🌈 Background gradient reacts to mouse position
-            AnimatedContainer(
-              duration: const Duration(seconds: 4),
-              decoration: BoxDecoration(
-                gradient: RadialGradient(
-                  center: Alignment(
-                    (mouseX / size.width) * 2 - 1,
-                    (mouseY / size.height) * 2 - 1,
+            // Particle background (animated_background package)
+            AnimatedBackground(
+              behaviour: RandomParticleBehaviour(
+                options: const ParticleOptions(
+                  baseColor: Color(0xFF00FF88),
+                  spawnOpacity: 0.05,
+                  opacityChangeRate: 0.05,
+                  minOpacity: 0.01,
+                  maxOpacity: 0.12,
+                  spawnMinSpeed: 5.0,
+                  spawnMaxSpeed: 20.0,
+                  spawnMinRadius: 1.0,
+                  spawnMaxRadius: 3.5,
+                  particleCount: 60,
+                ),
+              ),
+              vsync: this,
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    center: Alignment(
+                      (mouseX / size.width) * 2 - 1,
+                      (mouseY / size.height) * 2 - 1,
+                    ),
+                    radius: 1.2,
+                    colors: const [
+                      Color(0xFF001F1F),
+                      Color(0xFF010B13),
+                      Colors.black,
+                    ],
                   ),
-                  radius: 1.2,
-                  colors: const [
-                    Color(0xFF001F1F),
-                    Color(0xFF010B13),
-                    Colors.black,
-                  ],
                 ),
               ),
             ),
 
-            // 🐞 Floating robot animation
+            // Floating robot animation
             BugFollowAnimation(
               size: size,
               mouseX: mouseX,
@@ -73,7 +116,7 @@ class _LandingPageState extends State<LandingPage>
               lottieAsset: 'assets/images/robot.json',
             ),
 
-            // 🌍 Main content
+            // Main content
             Column(
               children: [
                 TopBar(onIconTap: () {}),
@@ -81,8 +124,9 @@ class _LandingPageState extends State<LandingPage>
                   child: PageView(
                     controller: _pageController,
                     physics: const BouncingScrollPhysics(),
-                    onPageChanged: (index) =>
-                        setState(() => currentIndex = index),
+                    onPageChanged: (index) => setState(() {
+                      currentIndex = index;
+                    }),
                     children: [
                       _buildHeroSection(isMobile, isTablet, size),
                       ...pages,
@@ -98,7 +142,7 @@ class _LandingPageState extends State<LandingPage>
     );
   }
 
-  // 🧍 Hero Section
+  // HERO SECTION
   Widget _buildHeroSection(bool isMobile, bool isTablet, Size size) {
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(
@@ -115,7 +159,6 @@ class _LandingPageState extends State<LandingPage>
                 )
               : Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  // crossAxisAlignment: CrossAxisAlignment.start,
                   children: _buildHeroContent(isMobile, isTablet),
                 ),
         ),
@@ -211,44 +254,11 @@ class _LandingPageState extends State<LandingPage>
     final right = Flexible(
       flex: 4,
       child: Center(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              width: isMobile
-                  ? 220
-                  : isTablet
-                      ? 300
-                      : 400,
-              height: isMobile
-                  ? 220
-                  : isTablet
-                      ? 300
-                      : 400,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: RadialGradient(
-                  colors: [
-                    Colors.greenAccent.withValues(alpha: 0.2),
-                    Colors.transparent,
-                  ],
-                ),
-              ),
-            ),
-            GlitchImage(
-              imageProvider: const AssetImage("assets/images/profile.png"),
-              maxWidth: isMobile
-                  ? 200
-                  : isTablet
-                      ? 280
-                      : 380,
-              maxHeight: isMobile
-                  ? 200
-                  : isTablet
-                      ? 280
-                      : 380,
-            ),
-          ],
+        child: _TiltedProfileImage(
+          mouseX: mouseX,
+          mouseY: mouseY,
+          isMobile: isMobile,
+          isTablet: isTablet,
         ),
       ),
     );
@@ -279,10 +289,9 @@ class _LandingPageState extends State<LandingPage>
           duration: const Duration(milliseconds: 600),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha: 0.05),
+            color: Colors.white.withOpacity(0.05),
             borderRadius: BorderRadius.circular(20),
-            border:
-                Border.all(color: Colors.greenAccent.withValues(alpha: 0.4)),
+            border: Border.all(color: Colors.greenAccent.withOpacity(0.4)),
           ),
           child: Text(
             s,
@@ -300,16 +309,33 @@ class _LandingPageState extends State<LandingPage>
   Widget _buildActionButtons(bool isMobile) {
     final buttons = [
       _glowButton("Projects", Icons.dashboard_outlined, Colors.green, () {
-        setState(() => currentIndex = 0);
-        _pageController.jumpToPage(1);
+        // target page index: 1 (hero is 0)
+        setState(() {
+          currentIndex = 1;
+        });
+        _pageController.animateToPage(1,
+            duration: const Duration(milliseconds: 600),
+            curve: Curves.easeInOut);
       }),
       _glowButton("About Me", Icons.person_outline, Colors.green, () {
-        setState(() => currentIndex = 1);
-        _pageController.jumpToPage(2);
+        setState(() {
+          currentIndex = 2;
+        });
+        _pageController.animateToPage(2,
+            duration: const Duration(milliseconds: 600),
+            curve: Curves.easeInOut);
       }),
       _glowButton("Hire Me", Icons.work_outline, Colors.green, () {
-        setState(() => currentIndex = 2);
-        _pageController.jumpToPage(3);
+        setState(() {
+          currentIndex = 3;
+        });
+        _pageController.animateToPage(3,
+            duration: const Duration(milliseconds: 600),
+            curve: Curves.easeInOut);
+      }),
+      // Download Resume button
+      _glowButton("Resume", Icons.download_outlined, Colors.green, () {
+        _openResume();
       }),
     ];
 
@@ -330,16 +356,16 @@ class _LandingPageState extends State<LandingPage>
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: color.withValues(alpha: 0.6), width: 1),
+          border: Border.all(color: color.withOpacity(0.6), width: 1),
           gradient: LinearGradient(
             colors: [
-              color.withValues(alpha: 0.08),
-              Colors.white.withValues(alpha: 0.03),
+              color.withOpacity(0.08),
+              Colors.white.withOpacity(0.03),
             ],
           ),
           boxShadow: [
             BoxShadow(
-              color: color.withValues(alpha: 0.3),
+              color: color.withOpacity(0.25),
               blurRadius: 12,
               spreadRadius: 1,
             ),
@@ -372,9 +398,9 @@ class _LandingPageState extends State<LandingPage>
         child: Container(
           height: 70,
           decoration: BoxDecoration(
-            color: Colors.black.withValues(alpha: 0.25),
+            color: Colors.black.withOpacity(0.25),
             border: Border(
-              top: BorderSide(color: Colors.white.withValues(alpha: 0.08)),
+              top: BorderSide(color: Colors.white.withOpacity(0.08)),
             ),
           ),
           child: Center(
@@ -388,6 +414,67 @@ class _LandingPageState extends State<LandingPage>
               },
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Small widget: profile image with tilt on hover (desktop) and static on mobile.
+/// Uses the mouseX/mouseY supplied by parent to compute rotation.
+class _TiltedProfileImage extends StatelessWidget {
+  final double mouseX;
+  final double mouseY;
+  final bool isMobile;
+  final bool isTablet;
+  const _TiltedProfileImage({
+    required this.mouseX,
+    required this.mouseY,
+    required this.isMobile,
+    required this.isTablet,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final imgWidth = isMobile
+        ? 200.0
+        : isTablet
+            ? 280.0
+            : 380.0;
+    if (isMobile) {
+      // on mobile keep static image for better UX
+      return GlitchImage(
+        imageProvider: const AssetImage("assets/images/profile.png"),
+        maxWidth: imgWidth,
+        maxHeight: imgWidth,
+      );
+    }
+
+    // compute normalized offsets around center to build rotation
+    final centerX = size.width / 2;
+    final centerY = size.height / 2;
+    final dx = ((mouseX - centerX) / centerX).clamp(-1.0, 1.0);
+    final dy = ((mouseY - centerY) / centerY).clamp(-1.0, 1.0);
+
+    // subtle tilts
+    final tiltX = dy * 0.06; // rotateX
+    final tiltY = dx * -0.06; // rotateY
+    final scale = 1.02 + (dx.abs() + dy.abs()) * 0.01;
+
+    return MouseRegion(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        transform: Matrix4.identity()
+          ..translate(0.0, 0.0, 0.0)
+          ..rotateX(tiltX)
+          ..rotateY(tiltY)
+          ..scale(scale),
+        child: GlitchImage(
+          imageProvider: const AssetImage("assets/images/profile.png"),
+          maxWidth: imgWidth,
+          maxHeight: imgWidth,
         ),
       ),
     );
