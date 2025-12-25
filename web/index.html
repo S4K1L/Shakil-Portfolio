@@ -1,24 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="S4K1L Flutter Web App">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -31,8 +18,62 @@
 
   <title>s4k1l</title>
   <link rel="manifest" href="manifest.json">
+
+  <!-- Lottie Web Player -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <!-- Loader Styles -->
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background-color: #ffffff;
+    }
+
+    #flutter-loader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffffff;
+      z-index: 9999;
+      transition: opacity 0.4s ease;
+    }
+
+    .loader-box {
+      width: 400px;
+      height: 400px;
+    }
+  </style>
 </head>
+
 <body>
+  <!-- Instant Loader -->
+  <div id="flutter-loader">
+    <div class="loader-box">
+      <lottie-player
+        src="assets/images/robot.json"
+        background="transparent"
+        speed="1"
+        loop
+        autoplay>
+      </lottie-player>
+    </div>
+  </div>
+
+  <!-- Flutter bootstrap -->
   <script src="flutter_bootstrap.js" async></script>
+
+  <!-- Remove loader once Flutter paints -->
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      const loader = document.getElementById('flutter-loader');
+      if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.remove(), 400);
+      }
+    });
+  </script>
 </body>
 </html>
