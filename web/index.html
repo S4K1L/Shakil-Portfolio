@@ -5,21 +5,21 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="S4K1L Flutter Web App">
+  <meta name="description" content="Shakil Mahmud | Portfolio Mahmud">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="s4k1l">
+  <meta name="apple-mobile-web-app-title" content="Shakil Mahmud | Portfolio">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>s4k1l</title>
+  <title>Shakil Mahmud | Portfolio</title>
   <link rel="manifest" href="manifest.json">
 
-  <!-- Lottie Web Player -->
+  <!-- Lottie Player -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
   <!-- Loader Styles -->
@@ -27,31 +27,31 @@
     html, body {
       height: 100%;
       margin: 0;
-      background-color: #ffffff;
+      background-color: #000000;
     }
 
     #flutter-loader {
       position: fixed;
       inset: 0;
       display: flex;
-      align-items: center;
       justify-content: center;
-      background-color: #ffffff;
+      align-items: center;
+      background: #000000;
       z-index: 9999;
       transition: opacity 0.4s ease;
     }
 
-    .loader-box {
-      width: 400px;
-      height: 400px;
+    .loader-container {
+      width: 150px;
+      height: 150px;
     }
   </style>
 </head>
 
 <body>
-  <!-- Instant Loader -->
+  <!-- Instant Loader (NO white screen) -->
   <div id="flutter-loader">
-    <div class="loader-box">
+    <div class="loader-container">
       <lottie-player
         src="assets/images/robot.json"
         background="transparent"
@@ -62,10 +62,10 @@
     </div>
   </div>
 
-  <!-- Flutter bootstrap -->
+  <!-- Flutter Bootstrap -->
   <script src="flutter_bootstrap.js" async></script>
 
-  <!-- Remove loader once Flutter paints -->
+  <!-- Remove loader when Flutter is ready -->
   <script>
     window.addEventListener('flutter-first-frame', function () {
       const loader = document.getElementById('flutter-loader');
