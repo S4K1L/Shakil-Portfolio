@@ -289,9 +289,10 @@ class _LandingPageState extends State<LandingPage>
           duration: const Duration(milliseconds: 600),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.05),
+            color: Colors.white.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Colors.greenAccent.withOpacity(0.4)),
+            border:
+                Border.all(color: Colors.greenAccent.withValues(alpha: 0.4)),
           ),
           child: Text(
             s,
@@ -356,16 +357,16 @@ class _LandingPageState extends State<LandingPage>
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: color.withOpacity(0.6), width: 1),
+          border: Border.all(color: color.withValues(alpha: 0.6), width: 1),
           gradient: LinearGradient(
             colors: [
-              color.withOpacity(0.08),
-              Colors.white.withOpacity(0.03),
+              color.withValues(alpha: 0.08),
+              Colors.white.withValues(alpha: 0.03),
             ],
           ),
           boxShadow: [
             BoxShadow(
-              color: color.withOpacity(0.25),
+              color: color.withValues(alpha: 0.25),
               blurRadius: 12,
               spreadRadius: 1,
             ),
@@ -398,9 +399,9 @@ class _LandingPageState extends State<LandingPage>
         child: Container(
           height: 70,
           decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.25),
+            color: Colors.black.withValues(alpha: 0.25),
             border: Border(
-              top: BorderSide(color: Colors.white.withOpacity(0.08)),
+              top: BorderSide(color: Colors.white.withValues(alpha: 0.08)),
             ),
           ),
           child: Center(
@@ -432,7 +433,6 @@ class _TiltedProfileImage extends StatelessWidget {
     required this.mouseY,
     required this.isMobile,
     required this.isTablet,
-    super.key,
   });
 
   @override
@@ -467,9 +467,11 @@ class _TiltedProfileImage extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 180),
         transform: Matrix4.identity()
+          // ignore: deprecated_member_use
           ..translate(0.0, 0.0, 0.0)
           ..rotateX(tiltX)
           ..rotateY(tiltY)
+          // ignore: deprecated_member_use
           ..scale(scale),
         child: GlitchImage(
           imageProvider: const AssetImage("assets/images/profile.png"),
